@@ -1,0 +1,102 @@
+# Introduction
+   - What is SQL?
+   - Why is SQL important?
+   - Relational database concepts: tables( entity ), rows( tuples of recods), columns( attributes ), keys.
+
+   
+## SQL
+IT IS SIMPLE Query language
+Structures QUERY language with help of this store and strive or manipulate data from tha database server.
+
+🧠 SQL is the Brain. BI Tools are the Face.
+✔️ SQL lets you talk directly to your database — extract, filter, join, and clean data with full control.
+✔️ Power BI / Tableau are great for visualizing and sharing insights — but they depend on clean, structured data.
+____________________________________________________________________________________
+
+🚀 Here’s What SQL Unlocks:
+✅ Custom Queries – go beyond UI filters
+✅ Joins – combine data across multiple tables
+✅ Data Cleaning – fix missing values, remove duplicates
+✅ Performance – query only what you need
+✅ Automation – schedule and reuse SQL scripts
+✅ Better Control – especially with large datasets
+
+## Why use SQL Important:-
+1. Data Analysis: SQL is used to analyze and manipulate data in a database.
+2. Database Administration:
+3. Web Development:
+4. Business Development- Power BI or Tablue
+5. Data Science  ->
+6. Business Analysis
+7. Data Engineering
+
+
+  
+Data collection -> cleaning -> manipulate and store in serever .
+
+SQL Query help store on the server
+
+Python -> connection SQL
+
+
+###   Admission FORM  
+                          Studetns ( Entity )
+Id  Name  age  Gender  Address  phone  number  Email_Id  ( attributes name )
+1   John   20   Male    USA      1234   1234   john  ( Tuples of recods)
+2   Emma   21   Female  UK       5678   5678   em
+3   David  22   Male    India    9012   9012   david
+4   John  21  female    UK 5678 5678  em      
+5   Emma  20  Male    USA 1234 1234  john
+ 
+## Horizontal( Rows ) or vertical ( columns )
+
+
+
+## Product ( Entity )
+
+product_id , product_name, categories , Price, weight or quantity or etc.  
+1   Apple   Fruits   10.99   0.5
+
+2           Vegitables 10.99 0. 5
+
+##   Student ( Entity )
+
+student_id , Name , Age , Gender , Email_Id , Phone number , Course
+
+
+## Course ( Entity )
+course_id , course_name , duration , course_fee , course_description , course_image , course_video
+
+ Product Data tales
+
+ Student Data tables
+ 
+
+Mysql -> data store  
+
+Python -> mysql -> data store
+
+Amazon -> server
+
+Client -> request -> server -> response
+                       
+## Setting Up Your Environment**
+   - Database software choices: MySQL, PostgreSQL, SQLite, SQL Server, Oracle.
+   - Installing a database.
+   - Using database interfaces: Command Line, GUI tools like MySQL Workbench or pgAdmin, online platforms.
+
+
+-- C  R U  D Operations:- 
+C    -> Create or new information store in the database table.
+
+Create  or CREATE or CrEate or create ( command )
+
+R   -> Read or retrive or fetch
+Select  ( command )
+
+U  -> Update or edit information which have already store in the database table
+Update  ( command ) 
+
+D  -> Delete information from the database table
+
+Delete  ( command )
