@@ -82,7 +82,9 @@ Python -> mysql -> data store
 
 Amazon -> server
 
-Client -> request -> server -> response
+MySQL is an open-source relational database management system (RDBMS) that uses Structured Query Language 
+(SQL) to store, manage, and retrieve data. It is widely used as the backend for many popular applications and websites, 
+including Facebook, Netflix, and Uber, due to its reliability, performance, and scalability. 
                        
 ## Setting Up Your Environment**
    - Database software choices: MySQL, PostgreSQL, SQLite, SQL Server, Oracle.
@@ -104,3 +106,73 @@ Update  ( command )
 D  -> Delete information from the database table
 
 Delete  ( command )
+
+
+
+
+## How many types of sql command or other words characters in the SQL
+
+-- 1. DDL ( Data Definition Language )
+-- 2. DML ( Data Manipulate Language )
+-- 3. DCL ( Data Control Language )
+-- 4. TCL ( Transaction Control Language )
+-- 5. DQL ( Data Query Language ) -> select
+
+# DDL 
+DDL stands for Data Definition Language, a type of SQL command used to define and manage the structure of database objects like tables, indexes, and schemas. 
+It includes commands like CREATE, ALTER, and DROP that modify the database's structure, but not the actual data within the tables. 
+eg.. Create , drop , alter, turncate , rename , modify 
+
+-- Create Database and table
+
+create database classroom;
+
+-- if not exists
+create database if not exists classroom;
+create database if not exists sql_course1;
+
+-- if exits
+drop database if exists classroom;
+
+-- create table 
+-- step:- 1
+use sql_course;
+create table if not exists students(
+id int primary key,
+name varchar(30),
+age varchar(30),
+gender varchar(30),
+address varchar(30),
+phone varchar(30),
+email_id varchar(30)
+);
+
+-- Drop table 
+drop table if exists students;
+
+
+-- step:- 2
+create table if not exists my_file.students(
+id int primary key,
+name varchar(30),
+age varchar(30),
+gender varchar(30),
+address varchar(30),
+phone varchar(30),
+email_id varchar(30)
+);
+
+-- -- fetch the records:-
+
+select * from students;  -- * ( astrick ) all columns 
+
+-- fetch table data form specific database table
+select * from my_db.students;
+
+-- specific column read 
+select name, address , phone ,email from students;
+
+use sql_course;
+select * from sql_course.medical_costs;
+
+select BMI , Children , Smoker, Region,`Medical Cost` from sql_course.medical_costs;
