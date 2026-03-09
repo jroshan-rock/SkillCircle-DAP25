@@ -5,21 +5,26 @@
 
    
 ## SQL
+SQL stands for Structured Query Language and is the standard, domain-specific programming language 
+used to manage and interact with relational databases. It is the backbone of modern data management, 
+allowing users and applications to efficiently store, 
+retrieve, manipulate, and define data organized in tables consisting of rows and columns.
+
 IT IS SIMPLE Query language
 Structures QUERY language with help of this store and strive or manipulate data from tha database server.
 
-🧠 SQL is the Brain. BI Tools are the Face.
-✔️ SQL lets you talk directly to your database — extract, filter, join, and clean data with full control.
-✔️ Power BI / Tableau are great for visualizing and sharing insights — but they depend on clean, structured data.
+# SQL is the Brain. BI Tools are the Face.
+1. SQL lets you talk directly to your database — extract, filter, join, and clean data with full control.
+2. Power BI / Tableau are great for visualizing and sharing insights — but they depend on clean, structured data.
 ____________________________________________________________________________________
 
-🚀 Here’s What SQL Unlocks:
-✅ Custom Queries – go beyond UI filters
-✅ Joins – combine data across multiple tables
-✅ Data Cleaning – fix missing values, remove duplicates
-✅ Performance – query only what you need
-✅ Automation – schedule and reuse SQL scripts
-✅ Better Control – especially with large datasets
+# What SQL Unlocks:
+1. Custom Queries – go beyond UI filters
+2. Joins – combine data across multiple tables
+3. Data Cleaning – fix missing values, remove duplicates , Unstructured Data 
+4. Performance – query only what you need
+5. Automation – schedule and reuse SQL scripts
+6. Better Control – especially with large datasets
 
 ## Why use SQL Important:-
 1. Data Analysis: SQL is used to analyze and manipulate data in a database.
@@ -32,7 +37,7 @@ ________________________________________________________________________________
 
 
   
-Data collection -> cleaning -> manipulate and store in serever .
+Data collection -> cleaning -> manipulate and store in Server /Database.
 
 SQL Query help store on the server
 
@@ -40,16 +45,15 @@ Python -> connection SQL
 
 
 ###   Admission FORM  
-                          Studetns ( Entity )
-Id  Name  age  Gender  Address  phone  number  Email_Id  ( attributes name )
-1   John   20   Male    USA      1234   1234   john  ( Tuples of recods)
+                          Studetns(Table) =>  ( Entity )
+Id  Name  age  Gender  Address  phone  number  Email_Id  ( Attributes name )
+1   John   20   Male    USA      1234   1234   john  ( Tuples of recods) => First record => First Row
 2   Emma   21   Female  UK       5678   5678   em
 3   David  22   Male    India    9012   9012   david
 4   John  21  female    UK 5678 5678  em      
 5   Emma  20  Male    USA 1234 1234  john
  
 ## Horizontal( Rows ) or vertical ( columns )
-
 
 
 ## Product ( Entity )
