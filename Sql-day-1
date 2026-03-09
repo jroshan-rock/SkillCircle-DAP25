@@ -94,7 +94,7 @@ including Facebook, Netflix, and Uber, due to its reliability, performance, and 
 - MySQL 9.x (Innovation): Features the latest, faster-paced developments (e.g., 9.0, 9.1, 9.2, 9.6).
 - MySQL 8.0: The previous, widely used standard, still supported but nearing end-of-life. 
 
-# ey Features
+# Key Features
 - Open Source & Cost-Effective: MySQL is freely available to download and use under the GNU General Public License (GPL), making it a cost-effective solution for a wide range of applications.
 Relational Model: Data is organized into structured tables with rows and columns, and relationships between tables are defined using keys.
 - High Performance & Reliability: Known for its speed and stability, MySQL can handle a high volume of concurrent connections and large datasets efficiently.
@@ -102,6 +102,13 @@ Relational Model: Data is organized into structured tables with rows and columns
 - ACID Transactions: The default storage engine, InnoDB, supports full ACID (Atomicity, Consistency, Isolation, Durability) properties, which ensures data integrity and dependable transaction processing.
 - Cross-Platform Compatibility: MySQL runs on various operating systems, including Windows, Linux, and macOS.
 - Robust Security: It includes advanced security features like user authentication, SSL encryption, and a database firewall to protect data.
+
+# Primary Uses
+MySQL is a versatile system used in many scenarios: 
+1. Web Applications: It is a core component of the popular LAMP (Linux, Apache, MySQL, PHP/Python/Perl) stack for building dynamic websites.
+2. E-commerce: Manages product catalogs, customer data, orders, and transactions for online stores.
+3. Content Management Systems (CMS): Powers the databases behind platforms like WordPress and Drupal.
+4. SaaS and ISVs: Many independent software vendors embed MySQL as their core database for their products and services
 
 -- C  R U  D Operations:- 
 C    -> Create or new information store in the database table.
