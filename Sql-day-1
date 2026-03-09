@@ -29,12 +29,10 @@ ________________________________________________________________________________
 ## Why use SQL Important:-
 1. Data Analysis: SQL is used to analyze and manipulate data in a database.
 2. Database Administration:
-3. Web Development:
-4. Business Development- Power BI or Tablue
-5. Data Science  ->
-6. Business Analysis
-7. Data Engineering
-
+3. Business Development- Power BI or Tablue
+4. Data Science  ->
+5. Business Analysis
+6. Data Engineering
 
   
 Data collection -> cleaning -> manipulate and store in Server /Database.
@@ -91,6 +89,19 @@ including Facebook, Netflix, and Uber, due to its reliability, performance, and 
    - Installing a database.
    - Using database interfaces: Command Line, GUI tools like MySQL Workbench or pgAdmin, online platforms.
 
+# Key MySQL Versions:
+- MySQL 8.4 LTS: The recommended, most stable version for production, focusing on longevity and security.
+- MySQL 9.x (Innovation): Features the latest, faster-paced developments (e.g., 9.0, 9.1, 9.2, 9.6).
+- MySQL 8.0: The previous, widely used standard, still supported but nearing end-of-life. 
+
+# ey Features
+- Open Source & Cost-Effective: MySQL is freely available to download and use under the GNU General Public License (GPL), making it a cost-effective solution for a wide range of applications.
+Relational Model: Data is organized into structured tables with rows and columns, and relationships between tables are defined using keys.
+- High Performance & Reliability: Known for its speed and stability, MySQL can handle a high volume of concurrent connections and large datasets efficiently.
+- Scalability: It offers features like replication and clustering that allow applications to scale to support millions of users and large amounts of data.
+- ACID Transactions: The default storage engine, InnoDB, supports full ACID (Atomicity, Consistency, Isolation, Durability) properties, which ensures data integrity and dependable transaction processing.
+- Cross-Platform Compatibility: MySQL runs on various operating systems, including Windows, Linux, and macOS.
+- Robust Security: It includes advanced security features like user authentication, SSL encryption, and a database firewall to protect data.
 
 -- C  R U  D Operations:- 
 C    -> Create or new information store in the database table.
