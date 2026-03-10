@@ -1,5 +1,15 @@
 # 2026 - 03 - 10 
 
+# DDL 
+DDL stands for Data Definition Language, a type of SQL command used to define and manage the structure of database objects like tables, indexes, and schemas. 
+It includes commands like CREATE, ALTER, and DROP that modify the database's structure, but not the actual data within the tables. 
+eg.. Create , drop , alter, turncate , rename , modify 
+
+# 2026 - 03 - 10 
+-- DDL 
+
+-- Create , alter , drop , truncate , modify , add , rename 
+
 # MySQL Data Types Concepts
 
 # MySQL data types are grouped into five main categories:
@@ -114,3 +124,74 @@ tags SET('sports','tech','music','travel')
 7. Use TIMESTAMP when you need timezone handling
 
 8. Use ENUM/SET for controlled categories
+
+-- Create Data Base 
+
+create database DAP25; 
+create database if not exists DAP25; 
+
+-- Load Database 
+use DAP25;
+
+-- Table Create 
+create table if not exists customer(
+id int(100) , 
+name varchar(50) , 
+email varchar(100),
+salary decimal(10,2),
+city  varchar(50), 
+Address text,
+joining_date datetime
+);
+
+-- Create Database and table
+create database classroom;
+
+-- if not exists
+create database if not exists classroom;
+create database if not exists sql_course1;
+
+-- if exits
+drop database if exists classroom;
+
+-- create table 
+-- step:- 1
+use sql_course;
+create table if not exists students(
+id int primary key,
+name varchar(30),
+age varchar(30),
+gender varchar(30),
+address varchar(30),
+phone varchar(30),
+email_id varchar(30)
+);
+
+-- Drop table 
+drop table if exists students;
+
+-- step:- 2
+create table if not exists my_file.students(
+id int primary key,
+name varchar(30),
+age varchar(30),
+gender varchar(30),
+address varchar(30),
+phone varchar(30),
+email_id varchar(30)
+);
+
+-- Fetch the records:-
+
+select * from students;  -- * ( astrick ) all columns 
+
+-- fetch table data form specific database table
+select * from my_db.students;
+
+-- specific column read 
+select name, address , phone ,email from students;
+
+use sql_course;
+select * from sql_course.medical_costs;
+
+select BMI , Children , Smoker, Region,`Medical Cost` from sql_course.medical_costs;
