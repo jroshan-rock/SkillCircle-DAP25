@@ -1,0 +1,116 @@
+# 2026 - 03 - 10 
+
+# MySQL Data Types Concepts
+
+# MySQL data types are grouped into five main categories:
+
+1. Numeric Types (INT, DECIMAL, FLOAT, etc.)
+
+2. Date & Time Types (DATE, DATETIME, etc.)
+
+3. String Types (CHAR, VARCHAR, TEXT, etc.)
+
+4. JSON Type
+
+
+# Numeric Data Types
+1. Integer Types
+
+| Type              | Storage | Range (SIGNED)                  | Range (UNSIGNED)   |
+| ----------------- | ------- | ------------------------------- | ------------------ |
+| **TINYINT**       | 1 byte  | -128 to 127                     | 0 to 255           |
+| **SMALLINT**      | 2 bytes | -32,768 to 32,767               | 0 to 65,535        |
+| **MEDIUMINT**     | 3 bytes | -8,388,608 to 8,388,607         | 0 to 16,777,215    |
+| **INT / INTEGER** | 4 bytes | -2,147,483,648 to 2,147,483,647 | 0 to 4,294,967,295 |
+| **BIGINT**        | 8 bytes | -(2^63) to (2^63 -1)            | 0 to 2^64-1        |
+
+create table abc(
+id int , 
+age int 
+);
+
+2. Fixed-point (Exact)
+
+DECIMAL(M,D) or NUMERIC(M,D)
+
+M = total digits
+
+D = digits after decimal
+
+Stored as string, not floating-point → best for money, financial values.
+
+price DECIMAL(10,2)  -- up to 99999999.99
+
+temperature FLOAT,
+distance DOUBLE
+
+Floating-point (Approximate)
+
+| Type          | Storage | Precision      |
+| ------------- | ------- | -------------- |
+| FLOAT         | 4 bytes | \~7 digits     |
+| DOUBLE / REAL | 8 bytes | \~15-16 digits |
+
+
+3. Bit & Boolean
+
+BIT(M) – stores binary values (M = 1 to 64 bits)
+
+BOOLEAN – alias for TINYINT(1) (0 = false, 1 = true)
+
+is_active BOOLEAN,
+flags BIT(4)  -- 4-bit binary
+
+4. Date & Time Data Types
+
+| Type          | Storage | Range                                      | Format                  |
+| ------------- | ------- | ------------------------------------------ | ----------------------- |
+| **DATE**      | 3 bytes | 1000-01-01 to 9999-12-31                   | 'YYYY-MM-DD'            |
+| **DATETIME**  | 8 bytes | 1000-01-01 00:00:00 to 9999-12-31 23:59:59 | 'YYYY-MM-DD HH\:MM\:SS' |
+| **TIMESTAMP** | 4 bytes | 1970-01-01 UTC to 2038-01-19 UTC           | 'YYYY-MM-DD HH\:MM\:SS' |
+| **TIME**      | 3 bytes | -838:59:59 to 838:59:59                    | 'HH\:MM\:SS'            |
+| **YEAR**      | 1 byte  | 1901 to 2155                               | 'YYYY'                  |
+
+
+order_date DATE,
+created_at DATETIME,
+last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+5. String Data Types
+ - Fixed-Length
+
+CHAR(M) → fixed length (1–255), pads with spaces
+Example: CHAR(10) always stores 10 characters.
+
+- Variable-Length
+
+VARCHAR(M) → variable length (1–65535, depends on row size)
+Example: VARCHAR(100) → up to 100 characters.
+
+
+6. ENUM & SET
+
+- ENUM – predefined list, one value only
+status ENUM('pending','shipped','delivered','cancelled')
+
+- SET – predefined list, can store multiple values
+tags SET('sports','tech','music','travel')
+
+
+# Choosing the Right Data Type
+
+1. Use INT for IDs, counts
+
+2. Use BIGINT for large IDs (e.g., social media users)
+
+3. Use DECIMAL for money/financials
+
+4. Use VARCHAR for strings (but size carefully)
+
+5. Use TEXT/BLOB for long text/files
+
+6. Use DATE/DATETIME for historical logs
+
+7. Use TIMESTAMP when you need timezone handling
+
+8. Use ENUM/SET for controlled categories
