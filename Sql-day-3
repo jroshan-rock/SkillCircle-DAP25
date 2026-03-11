@@ -115,6 +115,21 @@ alter table customer_details rename to customer_info;
 
 
 DML 
+Data Manipulation Language (DML) is a subset of SQL used to manage and manipulate data within database objects (tables/views), 
+allowing users to INSERT, UPDATE, DELETE, and SELECT (retrieve) data. 
+DML operations are transactional, meaning they can be committed or rolled back, and focus on row-level data modification rather than database structure
+
+# Key DML Commands & Concepts:
+1. INSERT: Adds new rows of data to a table.
+2. UPDATE: Modifies existing data within a table.
+3. DELETE: Removes specific rows or all rows from a table.
+4. SELECT: Retrieves data from a database (sometimes categorized under DQL).
+5. Transaction Control: DML changes are often temporary until committed, allowing for rollbacks if errors occur. 
+
+# DML vs. DDL:
+1. DML (Data Manipulation Language): Manipulates the data inside tables (e.g., INSERT, UPDATE).
+2. DDL (Data Definition Language): Defines or alters the structure of the database (e.g., CREATE, DROP, ALTER).
+
 -- Fetch the records:-
 
 select * from students;  -- * ( astrick ) all columns 
