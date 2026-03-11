@@ -43,7 +43,7 @@ Python -> connection SQL
 
 
 ###   Admission FORM  
-                          Studetns(Table) =>  ( Entity )
+                          Students(Table) =>  ( Entity )
 Id  Name  age  Gender  Address  phone  number  Email_Id  ( Attributes name )
 1   John   20   Male    USA      1234   1234   john  ( Tuples of recods) => First record => First Row
 2   Emma   21   Female  UK       5678   5678   em
