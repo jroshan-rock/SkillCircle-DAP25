@@ -1,0 +1,53 @@
+# 2026 - 03 - 11 
+
+-- Create Database and table
+create database classroom;
+
+-- if not exists
+create database if not exists classroom;
+create database if not exists sql_course1;
+
+-- if exits
+drop database if exists classroom;
+
+-- create table 
+-- step:- 1
+use sql_course;
+create table if not exists students(
+id int primary key,
+name varchar(30),
+age varchar(30),
+gender varchar(30),
+address varchar(30),
+phone varchar(30),
+email_id varchar(30)
+);
+
+-- Drop table 
+drop table if exists students;
+
+-- step:- 2
+create table if not exists my_file.students(
+id int primary key,
+name varchar(30),
+age varchar(30),
+gender varchar(30),
+address varchar(30),
+phone varchar(30),
+email_id varchar(30)
+);
+
+-- Fetch the records:-
+
+select * from students;  -- * ( astrick ) all columns 
+
+-- fetch table data form specific database table
+select * from my_db.students;
+
+-- specific column read 
+select name, address , phone ,email from students;
+
+use sql_course;
+select * from sql_course.medical_costs;
+
+select BMI , Children , Smoker, Region,`Medical Cost` from sql_course.medical_costs;
