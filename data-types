@@ -1,0 +1,26 @@
+# Data Types in Mysql 
+  
+# Common MySQL Data Types
+MySQL supports several categories of data types, including numeric, string, and date/time. 
+
+1. Numeric Types
+- INT: A normal-size integer (whole number).
+- DECIMAL(M, D): An exact fixed-point number, suitable for financial data, where M is the total number of digits and D is the number of digits after the decimal point.
+- FLOAT / DOUBLE: Approximate floating-point numbers.
+- BIT: Stores bit values (boolean data is often represented using TINYINT(1) synonyms BOOL or BOOLEAN). 
+
+2. String Types
+- VARCHAR(size): A variable-length string.
+- CHAR(size): A fixed-length string, right-padded with spaces to the specified length.
+- TEXT: For large blocks of unstructured text.
+- ENUM / SET: String objects that can have a value (ENUM) or multiple values (SET) chosen from a predefined list. 
+
+3. Date and Time Types
+- DATE: Stores a calendar date in 'YYYY-MM-DD' format.
+- TIME: Stores a time of day or time interval.
+- DATETIME: Stores a date and time combination in 'YYYY-MM-DD HH:MM:SS' format.
+- TIMESTAMP: Stores date and time values that are converted from the current time zone to UTC for storage and back when retrieved. 
+
+4. Boolean 
+  - true => 1 ( Active , on , Valid , Login , Session on ) 
+  - false => 0 ( Un-Active , Off , In-Valid , Logout , Session off ) 
