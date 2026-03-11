@@ -140,7 +140,32 @@ select * from my_db.students;
 -- specific column read 
 select name, address , phone ,email from students;
 
-use sql_course;
-select * from sql_course.medical_costs;
+describe students;
 
-select BMI , Children , Smoker, Region,`Medical Cost` from sql_course.medical_costs;
+insert into students(_id, name,age,gender,address,phone,email) 
+values(1,'jroshan',18'male','xyz','1234567890','abc@gmail.com'),
+(2,'Nishant',18,'male','pqr','0987653421','pqr@gmail.com'),
+(3,'Aditya'18,'male','','1357907531','lmn@gmail.com');
+
+insert into students(name,gender,address,phone,email) 
+values('jroshan','male','xyz','1234567890','abc@gmail.com'),
+('Nishant','male','pqr','0987653421','pqr@gmail.com'),
+('Aditya','male','','1357907531','lmn@gmail.com');
+
+
+INSERT INTO students(name, age, gender, address, phone, email)
+VALUES ('C', 20, 'male', 'LMN', '1234567802', 'c@gmail.com'),
+('D', 22, 'female', 'ABC', '1234567803', 'd@gmail.com'),
+('E', 21, 'male', 'DEF', '1234567804', 'e@gmail.com'),
+('F', 23, 'female', 'GHI', '1234567805', 'f@gmail.com'),
+('G', 24, 'male', 'JKL', '1234567806', 'g@gmail.com'),
+('H', 25, 'female', 'MNO', '1234567807', 'h@gmail.com'),
+('I', 26, 'male', 'STU', '1234567808', 'i@gmail.com'),
+('J', 27, 'female', 'VWX', '1234567809', 'j@gmail.com'),
+('K', 28, 'male', 'YZA', '1234567810', 'k@gmail.com'),
+('L', 29, 'female', 'BCD', '1234567811', 'l@gmail.com'),
+('M', 30, 'male', 'EFG', '1234567812', 'm@gmail.com'),
+('N', 31, 'female', 'HIJ', '1234567813', 'n@gmail.com'),
+('O', 32, 'male', 'KLM', '1234567814', 'o@gmail.com');
+
+
