@@ -8,7 +8,7 @@ eg.. Create , drop , alter, turncate , rename , modify
 # 2026 - 03 - 10 
 -- DDL 
 
--- Create , alter , drop , truncate , modify , add , rename 
+-- Create , Alter , Drop , Truncate , Modify , Add , Rename 
 
 # MySQL Data Types Concepts
 
@@ -97,11 +97,20 @@ Example: CHAR(10) always stores 10 characters.
 VARCHAR(M) → variable length (1–65535, depends on row size)
 Example: VARCHAR(100) → up to 100 characters.
 
+- Test 
+It is used for Comment / Paragraph , Sentence and Address.
+
 
 6. ENUM & SET
 
 - ENUM – predefined list, one value only
 status ENUM('pending','shipped','delivered','cancelled')
+
+CREATE TABLE shirts (
+    name VARCHAR(40),
+    size ENUM('x-small', 'small', 'medium', 'large', 'x-large'),
+    status ENUM('pending','shipped','delivered','cancelled')
+);
 
 - SET – predefined list, can store multiple values
 tags SET('sports','tech','music','travel')
@@ -124,6 +133,8 @@ tags SET('sports','tech','music','travel')
 7. Use TIMESTAMP when you need timezone handling
 
 8. Use ENUM/SET for controlled categories
+
+# Created Database / Table Structured.
 
 -- Create Data Base 
 
