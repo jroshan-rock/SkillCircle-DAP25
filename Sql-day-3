@@ -37,6 +37,84 @@ phone varchar(30),
 email_id varchar(30)
 );
 
+
+Keys and Constrainsts:- 
+
+MySQL supports several key constraints used to enforce data integrity and reliability within 
+a database by specifying rules for the data in tables. 
+These constraints ensure data accuracy and prevent the insertion of invalid information.
+
+
+1. Not Null   ( Never store nulls value)
+NOT NULL: Ensures that a column cannot store a NULL value, meaning every record must have a value in that column
+
+
+2. Unique   ( Always store unique but may or not null values)
+UNIQUE: Guarantees that all values within a column (or a combination of columns) are distinct. A table can have multiple unique constraints.
+
+3. Primary Key  ( Always store unique and never null values ) Unique + not null 
+PRIMARY KEY: Uniquely identifies each row in a table. It is a combination of NOT NULL and UNIQUE constraints. 
+A table can have only one primary key.
+
+-- Alternate key , Composite key 
+
+4. checks    ( [Male, Female ,Other])  or ( age > 18 ) 
+CHECK: Ensures that all values in a column satisfy a specific condition or a logical expression, 
+such as an age being greater than 18.
+
+5. Default  ( False ) eg.. active  users 
+DEFAULT: Sets a default value for a column automatically if no value is specified during an INSERT operation.
+Salary   ( base salary by default 10000 )
+
+6. AUTO_INCREMENT: Automatically generates a unique, sequential number for a column whenever a new row is inserted. 
+This is commonly used with the PRIMARY KEY constraint for identifier columns.
+
+7. FOREIGN KEY: Establishes a link between data in two tables (a parent and a child table), 
+maintaining referential integrity and preventing actions that would destroy the link between them.
+
+8. CREATE INDEX: While not a constraint in the same vein as the others (it doesn't enforce a data rule), indexes are used by MySQL to retrieve data from the database more quickly. 
+Primary and foreign keys often automatically create indexes to optimize performance.
+
+
+use dap25; 
+-- Create table 
+
+CREATE TABLE Customer_info (
+    CustomerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Name varchar(255) NOT NULL,
+    Age int CHECK (Age >= 18),
+    City varchar(255) DEFAULT 'Mumbai',
+    UNIQUE (Name) , 
+    email varchar(50) not null unique 
+);
+describe customer_info;
+
+-- Alter  :- 
+
+-- add 
+alter table customer_info add column date_time datetime default current_timestamp;
+alter table customer_info add column test text;
+
+-- rename  
+alter table customer_info rename column date_time to datetime ;
+
+-- Drop column 
+alter table customer_info drop column test;
+
+describe customer_info;
+
+-- Modify 
+alter table customer_info modify age varchar(30);
+alter table customer_info modify city text ;
+
+describe customer_info;
+
+-- Change table name 
+rename table customer_info to customer_details;
+alter table customer_details rename to customer_info;
+
+
+DML 
 -- Fetch the records:-
 
 select * from students;  -- * ( astrick ) all columns 
