@@ -1,10 +1,17 @@
 <img width="1251" height="717" alt="image" src="https://github.com/user-attachments/assets/1d8f9d7d-0f87-4038-8f41-c2227011634a" />
 
-SQL Vs Mysql 
+# SQL Vs Mysql 
 
 SQL is a language, while MySQL is a database management system (DBMS) that uses the SQL language. You use the SQL language to tell the MySQL system what to do with the data it stores
 
 <img width="1058" height="608" alt="image" src="https://github.com/user-attachments/assets/5dd1ece1-e80f-4870-92b3-444496941b14" />
+
+
+# SQL vs Pandas 
+SQL is a declarative language for managing data in relational databases, excelling at large-scale operations and data integrity, while Pandas is a Python library for in-memory data analysis and manipulation, offering greater flexibility and integration with the broader Python ecosystem (e.g., machine learning and visualization libraries). They are not competitors but complementary tools often used together in a data pipeline.
+
+<img width="1043" height="734" alt="image" src="https://github.com/user-attachments/assets/b275acc4-6b8c-4a84-adc5-abf873c94ed3" />
+
 
 ## Key Functions of SQL:
   1. Data Querying: Retrieve data from a database using the SELECT statement.
