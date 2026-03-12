@@ -42,7 +42,9 @@ select distinct age , smoker from dataset;
 
 select count(distinct(age)) from dataset;
 
+# Nth Highest or Smallest
 -- Order by , limit and offset 
+
 1. The MySQL ORDER BY clause is used to sort the result set of a SELECT query in ascending (ASC) 
 or descending (DESC) order based on one or more columns. 
 By default, if no modifier is specified, it sorts in ascending order.
@@ -95,4 +97,27 @@ limit 2;
 -- Third highest medical charges for south west region  ?
  select * from dataset where region = "southwest" order by `medical charges` desc 
 limit 1 offset 2;
+
+# Task:- 
+1. Fetch the top three Highest Medical charges and BMI for Age 18 ? 
+2. Fetch the top three Lowest Medical charges and  BMI for Age 18 ? 
+3. Count the total number of records for gender is Male and Female ? 
+4. Count the total number of records for all region ? 
+5. Count the total number of records for Smoker is YES and NO ? 
+6. Male smokers have a significantly higher smoking rate than female smokers ? 
+7. Show all records where the person is a smoker.
+8. Retrieve all people who live in the southwest region.
+9. Find the top 5 patients with highest medical charges.
+10. Retrieve the youngest 10 patients.
+11. Find female patients ordered by age big to small.
+12. Count how many smokers are in the dataset.
+13. Find records ranked 11–20 by highest medical charges.
+14. Find distinct regions where smokers exist.
+15. Find patients with BMI > 40 ordered by charges.
+
+# Practics Platform :- 
+https://sqlzoo.net/wiki/SQL_Tutorial
+https://www.codechef.com/practice/sql-case-studies-topic-wise
+
+
 
