@@ -1,0 +1,98 @@
+# 2026 - 03 -12 
+
+select * from students;
+select * from dataset;
+select * from customer_segmentation_data;
+
+-- Data Analysis technique 
+1. Collect Data 
+2 . Read data using multiple sql technique .
+
+-- From => joins => where => Group by => having => select => order by  
+-- => limit => offset 
+
+select * from dataset;
+
+-- Total number of records 
+To count rows in MySQL, use the COUNT() aggregate function in your SELECT statement. 
+The specific syntax depends on what exactly you want to count (all rows, non-null values, or distinct values).
+
+select count(*) from dataset;  
+
+-- Total number of records for specific columns 
+select count(age) from dataset;
+select count(`children`) from dataset;
+select count(`medical charges`) from dataset;
+
+-- Unique records 
+The DISTINCT keyword in MySQL is used to return only unique (non-duplicate) rows from a table. 
+It is specified immediately after the SELECT keyword in a query to eliminate duplicate entries across the column(s) you specify.
+
+select distinct * from dataset;
+
+-- Unique records for specific columns 
+select distinct smoker from dataset;
+
+-- Fetch the unique records for age and smoker columns ? 
+select distinct age , smoker from dataset;
+
+
+-- Fetch the all unique region and age from medical data set?
+-- Count total number of unique records of a patients age ?
+
+select count(distinct(age)) from dataset;
+
+-- Order by , limit and offset 
+1. The MySQL ORDER BY clause is used to sort the result set of a SELECT query in ascending (ASC) 
+or descending (DESC) order based on one or more columns. 
+By default, if no modifier is specified, it sorts in ascending order.
+
+2. The MySQL LIMIT clause is used to constrain the number of rows returned by a SELECT statement, 
+which is crucial for managing large datasets, optimizing performance,
+and implementing pagination. The basic syntax is simple and flexible
+
+3. In MySQL, the OFFSET clause is used with the LIMIT clause to skip a specified number 
+of rows before beginning to return the result set. 
+It is primarily used for pagination, allowing you to retrieve data in manageable "pages".
+
+
+select * from dataset;
+
+select * 
+from dataset order by bmi; -- By-Default Ascending 
+
+select * from dataset order by bmi asc , smoker asc;
+
+-- Fetch the top 2 lowest medical charges ? 
+select * from dataset order by `medical charges` limit 2;
+
+-- Fetch the third lowest medical charges ? 
+select * from dataset order by `medical charges` limit 1 offset 2;
+
+-- Alias
+select `Medical Charges` / 2
+-- new_charges 
+from dataset order by `Medical Charges` desc;  -- Descending 
+
+-- Fetch the top five Highest medical charges ? 
+-- Fetch the 3rd Highest medical charges ? 
+-- Fetch the 4th Highest medical charges ? 
+
+select * from dataset order by `medical charges` desc limit 5;
+select * from dataset order by `medical charges` desc limit 1 offset 2;
+select*from dataset order by `medical charges` desc limit 1 offset 3;
+
+-- Filter the records 
+-- Where is used for filter the number of rows or tuple of records based on specific column and set of columns.
+
+-- Fetch the all medical reports for south west region ?
+select * from dataset where region = "southwest";
+
+-- Fetch top 2 medical charges for south west region ? 
+ select * from dataset where region = "southwest" order by `medical charges` desc 
+limit 2;
+
+-- Third highest medical charges for south west region  ?
+ select * from dataset where region = "southwest" order by `medical charges` desc 
+limit 1 offset 2;
+
