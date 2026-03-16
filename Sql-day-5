@@ -11,6 +11,9 @@ They are crucial for filtering, manipulating, and retrieving specific data sets 
 3. Comparision Operator ( < , > , != , <> , <= , >= ) 
 4. Logical Operator ( OR, AND , XOR , NOT ) 
 5. Special Operator 
+SQL provides several special operators used primarily in WHERE clauses for specific, 
+complex data filtering operations that go beyond basic comparisons. 
+Key special operators include IN, BETWEEN, LIKE, IS NULL, and EXISTS. 
 - Between , in , not in , is , is not , like 
 
 select * from students;
@@ -101,10 +104,12 @@ select count(*) from dataset where gender = 'male' and smoker ='yes';
 -- in , not in, between , is , is not , 
 
 -- Between and in 
-1. The SQL in operator is a logical operator used in the where clause to specific multiple values for a column. 
+1. The SQL Between and in operator is a logical operator used in the where clause to specific multiple values for a column. 
 It allows you to filter based on whether a columns' values mathces any within a specificed list or the result of a subquery.
 
 1. Between is a logical opertor used for filter record based on specific range . 
+Description: Checks if a value falls within a specified range, inclusive of the start and end values. 
+It can be used with numbers, dates, and characters.
 
 -- Age should be more than 18 and less than 35 for smoker is yes;
 select * from dataset where age > 18 and age <35 and smoker= 'yes'
@@ -140,6 +145,8 @@ select * from medical_costs where Age between 25 and 30;
 
 
 2. -- For multiple  or condition ( in or not in ) Check for multiple or Condition on same colums
+Description: Determines if a value matches any value in a provided list of expressions or the result of a subquery. 
+It simplifies queries that would otherwise require multiple OR conditions.
 
 -- Age is 18, 21,25,30 
 select * from dataset where age = 18 or age = 21 or age = 25 or age = 30 ;
@@ -155,8 +162,11 @@ select * from medical_costs where children in(2,5);
 -- Children is not 2 or 5 ?
 select * from medical_costs where children not in(0,1);
 
-3. -- Is null or is not null 
+3. -- IS NULL / IS NOT NULL 
 -- Only used for check the null value in a specific column  or set of columns
+
+Description: Tests for NULL values (missing or unknown data) in a column, as standard comparison operators (=, <>) don't work reliably with NULL.
+Example: SELECT * FROM Orders WHERE Shipping_Date IS NULL;
 
 -- Fetch the medical reports where BMI is null or not null
 select * from medical_costs
@@ -168,6 +178,10 @@ select * from medical_costs where BMI is not null;
 select * from medical_costs 
 where Smoker is not null;
 
+4. Like , not Like 
+Description: Searches for a specific pattern within a string column using wildcard characters. 
+The commonly used wildcards are % (zero or more characters) and _ (a single character).
+Example: SELECT * FROM Customers WHERE Email LIKE '%@gmail.com';
 
 
 
