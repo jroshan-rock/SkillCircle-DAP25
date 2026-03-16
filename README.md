@@ -1,5 +1,12 @@
 <img width="1251" height="717" alt="image" src="https://github.com/user-attachments/assets/1d8f9d7d-0f87-4038-8f41-c2227011634a" />
 
+W3schools:- [ https://www.w3schools.com/sql/sql_exercises.asp] <br>
+Codechef:- [ https://www.codechef.com/practice/sql-case-studies-topic-wise] <br> 
+hackerrank:- [ https://www.hackerrank.com/domains/sql ] <br> 
+sqlzoo  :- [https://sqlzoo.net/wiki/SQL_Tutorial ] <br> 
+Geeksforgeeks :- [ https://www.geeksforgeeks.org/sql/sql-exercises/] <br> 
+Leetcode :- https://leetcode.com/studyplan/top-sql-50/<br> 
+
 ## Key Functions of SQL:
   1. Data Querying: Retrieve data from a database using the SELECT statement.
   2. Data Manipulation: Perform operations like inserting (INSERT), updating (UPDATE), and deleting (DELETE) data.
