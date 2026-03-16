@@ -1,0 +1,36 @@
+#2026 -03 - 16 
+
+SQL operators are reserved words or characters used in SQL statements to perform operations like comparisons, calculations, 
+and logical evaluations on data. 
+
+They are crucial for filtering, manipulating, and retrieving specific data sets from a database.
+# Operator:- 
+1. Arithmetical Operator ( + , - , * , / , % ) 
+2. Assignment Operator ( =, +=, -= , *= , /=, %=) 
+3. Comparision Operator ( < , > , != , <> , <= , >= ) 
+4. Logical Operator ( OR, AND , XOR , NOT ) 
+5. Special Operator 
+- Between , in , not in , is , is not , like 
+
+
+-- AND ( both condition should be true) 
+TRUE and FALSE -> FALSE 
+FALSE and FALSE -> FALSE 
+TRUE and TRUE -> TRUE 
+False and True -> False
+
+-- OR  ( Atleast any one conditions should be true ) 
+True or False -> True 
+False or False -> False 
+False or True -> True 
+True or True -> True 
+
+-- XOR ( Should be only one conditons true )
+True or False -> True 
+False or False -> False 
+False or True -> True 
+True or True -> False
+
+-- NOT 
+True -> False 
+false -> True
