@@ -1,0 +1,32 @@
+#2026 - 03 - 17 
+
+Like Operators :- 
+-- Like and wild card ( Sarching like as Pattern ) 
+-- %% ( anything) 
+-- _ ( underscore )  ( fixed )  number of letter 
+
+1. Like ( %) 
+-- Like , Not Like 
+-- Email end with .in
+select * from students where email_id like '%.in';
+
+-- Email start with a 
+select * from students where email_id like "a%";
+
+select * from students;
+-- Name must be start with vowels ( a , e , i , o , u) 
+-- Name must be end with vowels ( a , e , i , o , u) 
+select * from students  where name like 'a%' 
+or name like 'e%' or name like 'i%' or name like 'o%'
+or name like 'u%';
+
+-- select * from students  where name like in('a','e','i','o','u');
+
+select * from students  where name like '%a' 
+or name like '%e' or name like '%i' or name like '%o'
+or name like '%u';
+
+-- regex  ( Regular Expression ) :- 
+select * from students  where name regexp '^[aeiou]'; -- ^ start with , $ ene with 
+select * from students  where name regexp '[aeiou]$';
+
