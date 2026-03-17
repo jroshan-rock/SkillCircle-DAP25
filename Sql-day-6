@@ -30,3 +30,113 @@ or name like '%u';
 select * from students  where name regexp '^[aeiou]'; -- ^ start with , $ ene with 
 select * from students  where name regexp '[aeiou]$';
 
+
+# Group by & Having :-  
+
+# Aggregate Functions:- 
+In MySQL, aggregation refers to the process of performing calculations on a set of values (from multiple rows) and returning a single summary value. This is achieved using aggregate functions, which are often combined with the GROUP BY clause to organize data into groups before applying the aggregation.
+Common MySQL Aggregate Functions:
+
+  1. COUNT(): Counts the number of rows or non-NULL values in a column.
+     Select COUNT(*) FROM dataset; -- Counts all rows
+     Select COUNT(DISTINCT region) FROM dataset; -- Counts unique region
+     Select count(*)  ,sum(`medical charges`)  from dataset ;
+
+  2. SUM(): Calculates the sum of a numeric column.
+     Select sum(`medical charges`)  , sum( BMI) FROM dataset;
+
+  3. AVG(): Calculates the average / total sum of a numeric column.
+    Select AVG(medical charges`) , sum(`medical charges`)  FROM dataset;
+
+ 4. MIN(): Returns the minimum value in a column.
+    SELECT MIN(hire_date) FROM dataset;
+
+5. MAX(): Returns the maximum value in a column.
+    SELECT MAX(salary) FROM dataset;
+
+-- Sum() , Avg(), Max(),Min(),Count()
+
+select sum(`medical charges`) as total_cost , avg(`medical charges`) average_of_costs
+, max(`Medical Cost`), min(`medical charges`), count(`medical charges`) from dataset
+where gender = 'female';
+
+-- Find the sum of medical cost for gender is female 
+select sum(`medical charges`) from dataset 
+where gender = 'female';
+
+-- Count the total number of records for each region ?
+Select count(*)  
+from dataset  where region ='southeast'; 
+
+Select count(*)
+from dataset  where region ='southwest';
+
+Select count(*) 
+from dataset  where region ='northeast';
+
+Select count(*)
+from dataset  where region ='northwest';
+
+-- Count the total number of records / Sum of medical charges for each region ?
+
+Select count(*)  ,sum(`medical charges`)    -- ,count(smoker)  , region-- , smoker
+from dataset  where region ='southeast'; 
+
+Select count(*)  , sum(`medical charges`)
+from dataset  where region ='southwest';
+
+Select count(*)  , sum(`medical charges`)
+from dataset  where region ='northeast';
+
+Select count(*) , sum(`medical charges`)
+from dataset  where region ='northwest';
+
+--  Find the avg of medical charges for each children . 
+select children,avg(`medical charges`) from dataset
+where children = 0;
+select children,avg(`medical charges``) from dataset
+where children = 1;
+select children,avg(`medical charges`) from dataset
+where children = 2;
+select children,avg(`medical charges`) from dataset
+where children = 3;
+select children,avg(`medical charges`) from dataset
+where children = 4;
+
+select children,avg(`medical charges`) from dataset
+where children in(5,6);
+
+select children,avg(`medical charges`) from dataset
+where children = 5;
+
+-- Same Task perform using Group By 
+
+# Using Aggregate Functions with GROUP BY:
+The GROUP BY clause is used to group rows that have the same values in specified columns into summary rows. Aggregate functions then operate on these groups.
+
+-- Aggregated and Non-Aggregated columns with group by 
+
+select region, count(*) , sum(`medical charges`), smoker 
+from dataset where smoker = 'yes' group by region;
+
+-- Here region , smoker is Non Aggregated column
+-- medical charges is Aggregated column
+
+select children,avg(`medical charges`) from datset
+group by children;
+
+-- Find All Aggregation result for each smoker and gender
+select smoker,gender, sum(`medical charges`) as total_cost , avg(`medical charges`) average_of_costs
+, max(`Medical Cost`),min(`medical charges``),count(`medical charges``) from dataset 
+group by smoker,gender;
+
+-- Count / Sum of medical charges for each region , gender ,smoker , age
+
+select region , gender ,smoker , age, count(*) , sum(`medical charges`)
+from dataset 
+where age = 18 
+group by region , gender ,smoker 
+-- , age
+
+
+
