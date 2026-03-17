@@ -95,3 +95,5 @@ SQL is a language, while MySQL is a database management system (DBMS) that uses 
 SQL is a declarative language for managing data in relational databases, excelling at large-scale operations and data integrity, while Pandas is a Python library for in-memory data analysis and manipulation, offering greater flexibility and integration with the broader Python ecosystem (e.g., machine learning and visualization libraries). They are not competitors but complementary tools often used together in a data pipeline.
 
 <img width="1043" height="734" alt="image" src="https://github.com/user-attachments/assets/b275acc4-6b8c-4a84-adc5-abf873c94ed3" />
+
+<img width="1724" height="934" alt="image" src="https://github.com/user-attachments/assets/313b77e2-de0e-4281-acdb-f03abc45fced" />
