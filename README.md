@@ -97,3 +97,16 @@ SQL is a declarative language for managing data in relational databases, excelli
 <img width="1043" height="734" alt="image" src="https://github.com/user-attachments/assets/b275acc4-6b8c-4a84-adc5-abf873c94ed3" />
 
 <img width="1724" height="934" alt="image" src="https://github.com/user-attachments/assets/313b77e2-de0e-4281-acdb-f03abc45fced" />
+
+
+
+Joins:- 
+1. Left Join
+   <img width="1411" height="806" alt="image" src="https://github.com/user-attachments/assets/fb398961-7974-442f-b948-7e79fb50dae2" />
+2. Right Join
+   <img width="1376" height="771" alt="image" src="https://github.com/user-attachments/assets/cec63aeb-6be7-425d-838d-b47c37f0e2cb" />
+3. Inner Join
+   <img width="1388" height="715" alt="image" src="https://github.com/user-attachments/assets/f3f8dead-4e23-459a-8fd2-9ca2f4256b02" />
+4. Self Join
+  <img width="710" height="399" alt="image" src="https://github.com/user-attachments/assets/83e7014c-34be-446b-8e17-0039c2c7afde" />
+
