@@ -102,4 +102,5 @@ Student_ID	Name	Course_ID	Course_Name
 🔍 INNER JOIN 🔹INNER JOIN (only matching records)
 🔗 Returns only matching records from both tables
 
+-- Table Joins It self called Self Joins 
 
