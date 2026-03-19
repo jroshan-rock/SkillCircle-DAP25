@@ -102,5 +102,8 @@ Student_ID	Name	Course_ID	Course_Name
 🔍 INNER JOIN 🔹INNER JOIN (only matching records)
 🔗 Returns only matching records from both tables
 
--- Table Joins It self called Self Joins 
+# Self Joins 
+- A self join in MySQL is a technique where a table is joined with itself to compare or combine rows within that same table. 
+- It is not a special keyword, but rather an ordinary JOIN operation (such as INNER JOIN or LEFT JOIN) where the same table name is listed twice using different table aliases to differentiate the two instances. 
+
 
