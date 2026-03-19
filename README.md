@@ -110,3 +110,44 @@ Joins:-
 4. Self Join
   <img width="710" height="399" alt="image" src="https://github.com/user-attachments/assets/83e7014c-34be-446b-8e17-0039c2c7afde" />
 
+Sub-Query:- 
+
+ANY Operator
+The ANY operator returns TRUE if the comparison is TRUE for at least one value in the set returned by the subquery. 
+Usage: It must be preceded by a standard comparison operator (=, >, <, <=, >=, <>, !=).
+Alias: The IN keyword is an alias for = ANY.
+Example: The following query finds products whose ProductID exists in the OrderDetails table (i.e., they have at least one order record)
+
+SELECT ProductName
+FROM Products
+WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails);
+
+In:- 
+This query is functionally equivalent to using the IN operator: 
+SELECT ProductName
+FROM Products
+WHERE ProductID IN (SELECT ProductID FROM OrderDetails);
+
+ALL Operator
+The ALL operator returns TRUE only if the comparison is TRUE for all values in the set returned by the subquery. 
+Usage: It must be preceded by a standard comparison operator (=, >, <, <=, >=, <>, !=) and is often used with SELECT, WHERE, and HAVING statements.
+Example: The following query retrieves order IDs where the maximum quantity for that order is greater than all the average quantities across all other orders. 
+
+SELECT OrderID
+FROM OrderDetails
+GROUP BY OrderID
+HAVING max(Quantity) > ALL (SELECT avg(Quantity) FROM OrderDetails GROUP BY OrderID);
+
+
+EXISTS Operator
+The EXISTS operator tests for the existence of any record in a subquery and returns TRUE if the subquery returns one or more rows. 
+
+Usage: It is used exclusively with subqueries and typically evaluates performance efficiently because it stops processing as soon as it finds the first matching row. The select list within the EXISTS subquery (e.g., SELECT *) is ignored by MySQL.
+Example: The following query finds staff who work in a London branch office by checking for the existence of a corresponding branch record.
+
+SELECT staffNo, fName, lName, position
+FROM Staff s
+WHERE EXISTS (SELECT * FROM Branch b WHERE s.branchNo = b.branchNo AND city = 'London');
+
+<img width="1031" height="542" alt="image" src="https://github.com/user-attachments/assets/8c920e3a-5334-40b3-ade6-91ed594de08b" />
+
