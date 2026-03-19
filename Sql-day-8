@@ -1,2 +1,183 @@
 #2026 - 03 - 19 
 
+
+# Sub-Query:- 
+
+1. ANY Operator
+- The ANY operator returns TRUE if the comparison is TRUE for at least one value in the set returned by the subquery. 
+- Usage: It must be preceded by a standard comparison operator (=, >, <, <=, >=, <>, !=).
+- Alias: The IN keyword is an alias for = ANY.
+- Example: The following query finds products whose ProductID exists in the OrderDetails table (i.e., they have at least one order record)
+
+SELECT ProductName <br>
+FROM Products <Br>
+WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails); <Br>
+
+2. In:- 
+- This query is functionally equivalent to using the IN operator: 
+SELECT ProductName <br>
+FROM Products <br>
+WHERE ProductID IN (SELECT ProductID FROM OrderDetails); <br>
+
+3. ALL Operator:- 
+- The ALL operator returns TRUE only if the comparison is TRUE for all values in the set returned by the subquery. 
+- Usage: It must be preceded by a standard comparison operator (=, >, <, <=, >=, <>, !=) and is often used with SELECT, WHERE, and HAVING statements.
+- Example: The following query retrieves order IDs where the maximum quantity for that order is greater than all the average quantities across all other orders. 
+
+SELECT OrderID
+FROM OrderDetails
+GROUP BY OrderID
+HAVING max(Quantity) > ALL (SELECT avg(Quantity) FROM OrderDetails GROUP BY OrderID);
+
+4. EXISTS Operator
+- The EXISTS operator tests for the existence of any record in a subquery and returns TRUE if the subquery returns one or more rows. 
+- Usage: It is used exclusively with subqueries and typically evaluates performance efficiently because it stops processing as soon as it finds the first matching row.
+- The select list within the EXISTS subquery (e.g., SELECT *) is ignored by MySQL.
+- Example: The following query finds staff who work in a London branch office by checking for the existence of a corresponding branch record.
+
+SELECT staffNo, fName, lName, position
+FROM Staff s
+WHERE EXISTS (SELECT * FROM Branch b WHERE s.branchNo = b.branchNo AND city = 'London');
+
+
+# Common Table Expression
+- A Common Table Expression (CTE) in MySQL is a temporary named result set that you can reference within a single SQL statement. 
+- Introduced in MySQL 8.0, CTEs improve query readability, maintainability, and allow for recursive queries to handle hierarchical data
+
+#Key Benefits
+- Improved Readability and Maintainability: CTEs break down complex queries into smaller, logical, and named components, making the code easier to understand and debug compared to deeply nested subqueries.
+- Code Reusability: A single CTE can be referenced multiple times within the same main query (e.g., SELECT, INSERT, UPDATE, or DELETE statement), avoiding repetitive code.
+- Recursive Functionality: This is a primary use case, enabling the traversal of hierarchical data structures like organizational charts or bill of materials, which is difficult to achieve with standard SQL alone.
+- Temporary Aggregation: CTEs can store intermediate aggregated results (e.g., average salary per department) that can then be used in the main query for further calculations or filtering. 
+
+WITH cte_name (column1, column2, ...) AS (
+    SELECT column1, column2
+    FROM table_name
+    WHERE condition
+)
+-- Main query that references the CTE
+SELECT * FROM cte_name;
+
+# Windows Functions:- 
+Window functions in MySQL perform calculations across a set of table rows related to the current row, without collapsing the individual rows into a single result. 
+This allows for complex analytical tasks like calculating running totals, rankings, and moving averages directly within a single query. Window functions were introduced in MySQL version 8.0.
+
+# Key Concepts
+- OVER() Clause: The mandatory clause that defines the "window" of rows the function operates on.
+- PARTITION BY: An optional sub-clause within OVER() that divides the rows into groups (partitions). The window function is applied independently within each partition, and the calculation resets when a partition boundary is crossed.
+- ORDER BY: A sub-clause within OVER() that specifies the logical order of rows within each partition. This is crucial for order-sensitive functions like ROW_NUMBER() or SUM() (for running totals).
+- Window Frame: An optional clause (ROWS or RANGE) that defines a subset of the current partition to perform the calculation on (e.g., the 3 rows preceding the current row).
+
+#Common Window Functions
+MySQL supports a variety of built-in and aggregate functions that can be used as window functions: 
+
+1. Ranking Functions
+- These functions assign a rank or number to each row within a partition: 
+- ROW_NUMBER(): Assigns a unique, sequential number to each row, starting from 1, even if values are the same.
+- RANK(): Assigns a rank to each row, with ties receiving the same rank and subsequent ranks skipped.
+- DENSE_RANK(): Similar to RANK(), but no ranks are skipped in the sequence for ties.
+- PERCENT_RANK(): Calculates the relative rank of the current row as a percentage between 0 and 1.
+- NTILE(N): Divides the partition into N approximately equal groups (buckets) and assigns a bucket number (1 to N) to each row.
+
+# ROW_NUMBER()
+This function is used to assigns a unique sequential integer to rows within a partition
+SELECT
+    employee_id,
+    department_id,
+    salary,
+    ROW_NUMBER() OVER (PARTITION BY department_id ORDER BY salary DESC) AS row_num
+FROM employees;
+
+# 2. RANK() and DENSE_RANK()
+The use of this function id to leave gaps in the ranking when they are ties and also assigns a ranking within a partition.
+
+SELECT
+    employee_id,
+    department_id,
+    salary,
+    RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rank,
+    DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS dense_rank
+FROM employees;
+
+
+2. Analytic (Value) Functions
+- These functions access data from other rows within the window: 
+- LAG(column, N, default): Returns the value of the column from the row that precedes the current row by N rows (default N is 1). If no such row exists, it returns default (default is NULL).
+- LEAD(column, N, default): Returns the value of the column from the row that follows the current row by N rows (default N is 1).
+- FIRST_VALUE(column): Returns the value of the column from the first row in the window frame.
+- LAST_VALUE(column): Returns the value of the column from the last row in the window frame.
+- NTH_VALUE(column, N): Returns the value of the column from the Nth row of the window frame.
+- CUME_DIST(): Calculates the cumulative distribution of a value within a set of values (percentage of rows less than or equal to the current row). 
+
+3. Aggregate Functions Used as Window Functions
+- Standard aggregate functions like SUM(), AVG(), MIN(), MAX(), and COUNT() can function as window functions when an OVER() clause is used. 
+
+To calculate a running total of sales, you can use the SUM() function with an OVER() clause that includes an ORDER BY clause: 
+SELECT
+    order_date,
+    revenue,
+    SUM(revenue) OVER (ORDER BY order_date) AS running_total
+FROM
+    sales
+ORDER BY
+    order_date;
+
+This query calculates the cumulative sum of revenue for each order_date, maintaining all individual rows in the result.
+
+eg... 
+(SUM) 
+SELECT
+    employee_id,
+    salary,
+    SUM(salary) OVER (ORDER BY employee_id) AS cumulative_salary
+FROM employees;
+
+( AVG ) 
+SELECT
+    employee_id,
+    salary,
+    AVG(salary) OVER (ORDER BY employee_id ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
+FROM employees;
+
+# LEAD() and LAG()
+- LEAD() and LAG() functions allow you to access subsequent or previous rows' data without the need for self-joins.
+
+SELECT
+    employee_id,
+    salary,
+    LEAD(salary, 1) OVER (ORDER BY employee_id) AS next_salary,
+    LAG(salary, 1) OVER (ORDER BY employee_id) AS previous_salary
+FROM employees;
+
+
+# Using Order By 
+SELECT
+    employee_id,
+    salary,
+    SUM(salary) OVER (ORDER BY employee_id) AS cumulative_salary
+FROM employees;
+
+SUM(salary) calculates the cumulative sum of salaries.
+OVER (ORDER BY employee_id) ensures that the rows are ordered by employee_id before applying the window function.
+The result will show the cumulative_salary, which is the running total of salaries.
+
+# Using Partition By 
+SELECT
+    employee_id,
+    department_id,
+    salary,
+    SUM(salary) OVER (PARTITION BY department_id ORDER BY salary DESC) AS dept_cumulative_salary
+FROM employees;
+
+
+# Window Frames: ROWS and RANGE
+- The window frame also defines which set of rows is included when calling a window function.
+- ROWS: This defines the number of rows in the frame.
+- RANGE: Indicates the range of values to be included.
+- Example of ROWS
+
+SELECT
+    employee_id,
+    salary,
+    SUM(salary) OVER (ORDER BY employee_id ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS sum_salary
+FROM employees;
