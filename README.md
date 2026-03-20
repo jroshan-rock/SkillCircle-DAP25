@@ -7,6 +7,8 @@ sqlzoo  :- [https://sqlzoo.net/wiki/SQL_Tutorial ] <br>
 Geeksforgeeks :- [ https://www.geeksforgeeks.org/sql/sql-exercises/] <br> 
 Leetcode :- https://leetcode.com/studyplan/top-sql-50/<br> 
 
+https://www.youtube.com/watch?v=Yi-VNTTGV4g&list=PLG-Gu4JB8iA5Jy0FyrKzAI_M2SUdPQDHi
+
 ## Key Functions of SQL:
   1. Data Querying: Retrieve data from a database using the SELECT statement.
   2. Data Manipulation: Perform operations like inserting (INSERT), updating (UPDATE), and deleting (DELETE) data.
