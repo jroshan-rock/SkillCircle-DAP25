@@ -1,0 +1,69 @@
+# Leanring - Default Date/time
+
+  -- 1. Data Cleaning in MySQL
+
+-- a) Handling NULLs or Missing Values
+-- Find Null values
+-- Replace NULLs , or drop or delete records 
+
+# Replace null value 
+ a) mean / Median ( Numerical column )  <br>
+ b ) Mode  ( Categorical column ) => group by => most occurrence.
+
+-- b) Removing Duplicates
+SELECT column_name, COUNT(*) FROM your_table
+GROUP BY column_name
+HAVING COUNT(*) > 1;
+
+Delete duplicates (keep only one row):
+
+-- Fixing Formatting Issues , Convert to lowercase or uppercase:
+
+-- d) Standardizing Data
+UPDATE your_table
+SET country = 'United States'
+WHERE country IN ('USA', 'U.S.A.', 'US', 'United States of America');
+
+-- Data Handling in MySQL
+-- CRUD => Create , read , update and delete 
+
+
+
+use sql_course;
+
+CREATE TABLE data_clean (
+    RecordID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    City VARCHAR(50),
+    OrderDate DATE,
+    ProductName VARCHAR(100),
+    Quantity INT,
+    PricePerUnit DECIMAL(10, 2),
+    OrderStatus VARCHAR(20),
+    Description VARCHAR(255)
+);
+
+INSERT INTO data_clean (CustomerID, FirstName, LastName, Email, City, OrderDate, ProductName, Quantity, PricePerUnit, OrderStatus, Description) VALUES
+(1, 'Alice', 'Smith', 'alice.smith@email.com', 'New York', '2025-04-20', 'Laptop', 1, 1200.00, 'Shipped', 'High-performance laptop'),
+(2, 'Bob', 'Johnson', 'bob.johnson@email.com', 'London', '2025-04-21', 'Mouse', 2, 25.00, 'Delivered', 'Wireless mouse'),
+(1, 'Alice', 'Smith', 'alice.smith@email.com', 'New York', '2025-04-20', 'Laptop', 1, 1200.00, 'Shipped', 'High-performance laptop'), -- Duplicate Row
+(NULL, 'Charlie', 'Brown', 'charlie.brown@email.com', 'Paris', '2025-04-22', 'Keyboard', 1, 75.00, 'Pending', NULL),       -- Null CustomerID, Null Description
+(4, 'David', 'Lee', 'david.lee@email.com', 'Tokyo', '2025-04-23', 'Monitor', 1, NULL, 'Processing', '27-inch display'),       -- Null PricePerUnit
+(2, 'Bob', 'Johnson', 'bob.johnson@email.com', 'London', '2025-04-21', 'Mouse', 2, 25.00, 'Delivered', 'Wireless mouse'), -- Duplicate Row
+(5, 'Eve', 'Wilson', 'eve.wilson@email.com', 'London', '2025-04-24', 'Book - Fiction', 3, 15.99, 'Shipped', 'Bestselling novel'),
+(NULL, 'Fiona', 'Green', 'fiona.green@email.com', 'Berlin', NULL, 'Book - Sci-Fi', 2, NULL, 'Shipped', 'Exciting science fiction'), -- Null OrderDate, Null PricePerUnit
+(1, 'Alice', 'Smith', 'alice.smith@email.com', 'New York', '2025-04-25', 'T-Shirt', -1, 20.00, 'Delivered', 'Cotton t-shirt'),    -- Invalid Quantity
+(3, 'Charlie', 'Brown', 'charlie.brown@email.com', 'Paris', '2025-04-26', 'Jeans', 1, 55.00, 'processing', 'Denim jeans'),       -- Inconsistent OrderStatus
+(6, 'Fiona', 'Green', 'fiona.green@email.com', 'Berlin', '2025-04-27', 'Coffee Maker', 1, 80.00, 'Pending', NULL),
+(1, 'Alice', 'Smith', 'alice.smith@email.com', 'New York', '2025-04-20', 'Laptop', 1, 1200.00, 'Shipped', 'High-performance laptop');
+
+
+-- Cleaning 
+-- removed null value 
+-- null value replace by dummy data
+
+-- null , Boolean ( True, Fasle ) 
+select * from data_clean;
