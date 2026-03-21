@@ -1,5 +1,8 @@
 #2026 - 03 - 21 
 
+..........................................................
+..........................................................
+
 #🔥Beginner Level (Must Know)
 
 # Basic SQL Concepts
@@ -13,6 +16,8 @@
 8. WHERE conditions
 9. ORDER BY, LIMIT
 10. DISTINCT
+..........................................................
+..........................................................
 
 SELECT name, salary
 FROM employees
@@ -23,18 +28,19 @@ ORDER BY salary DESC;
 Filter employees by salary
 Sort data
 Get top 5 records
-
-
+..........................................................
 # CRUD Operations
 1. Write query to SELECT all records
 2. Difference between WHERE vs HAVING
 3. Insert, Update, Delete examples
 SELECT * FROM employees WHERE salary > 50000;
+..........................................................
 
 # Filtering & Sorting
 1. ORDER BY vs GROUP BY
 2. LIMIT usage
 3. DISTINCT
+..........................................................
 
 # Aggregate Functions
 1. COUNT(), SUM(), AVG(), MIN(), MAX()
@@ -42,6 +48,7 @@ SELECT * FROM employees WHERE salary > 50000;
 SELECT department, AVG(salary)
 FROM employees
 GROUP BY department;
+..........................................................
 
 - COUNT(), SUM(), AVG()
 - GROUP BY
@@ -51,12 +58,17 @@ SELECT department, AVG(salary)
 FROM employees
 GROUP BY department
 HAVING AVG(salary) > 60000;
+..........................................................
 
 -- Tasks:- 
 Avg salary per department
 Count employees per team
 Find departments with high salary
+..........................................................
 
+
+..........................................................
+..........................................................
 # ⚡Intermediate Level (Core for Interviews)
 
 # Joins (VERY IMPORTANT)
@@ -64,11 +76,13 @@ Find departments with high salary
 2. LEFT JOIN
 3. RIGHT JOIN
 4. FULL JOIN (simulate in MySQL)
+..........................................................
 
 SELECT e.name, d.dept_name
 FROM employees e 
 INNER JOIN departments d
 ON e.dept_id = d.id;
+..........................................................
 
 # 👉 Interview Q:
 1. Difference between INNER vs LEFT JOIN?
@@ -85,7 +99,7 @@ ON e.dept_id = d.id;
 -- Tasks:-
 Combine employee + department tables
 Find employees with no department (NULL case)
-
+..........................................................
 
 # Subqueries
 1. Scalar subquery
@@ -103,7 +117,7 @@ WHERE salary > (SELECT AVG(salary) FROM employees);
 Above average salary
 Second highest salary
 Filter using nested queries
-
+..........................................................
 
 # CASE Statements
 
@@ -113,6 +127,7 @@ CASE
   ELSE 'Low'
 END AS salary_category
 FROM employees;
+..........................................................
 
 # Window Functions (🔥)
 1. ROW_NUMBER()
@@ -142,10 +157,16 @@ FROM employees;
 Top 3 employees per department
 Rank students by marks
 Running totals
+..........................................................
 
+
+..........................................................
+..........................................................
 # 2026 - 03 - 20 
 # 👉 FAANG-level interviews
 # 🚀 Advanced Level (Data Science Focus)
+..........................................................
+..........................................................
 
 # CTE (Common Table Expressions)
 WITH avg_salary AS (
@@ -154,6 +175,7 @@ WITH avg_salary AS (
   GROUP BY department
 )
 SELECT * FROM avg_salary;
+..........................................................
 
 # CTE (WITH clause)
 1. CASE WHEN
@@ -165,8 +187,10 @@ WITH dept_avg AS (
   GROUP BY department
 )
 SELECT * FROM dept_avg;
+..........................................................
 
-
+..........................................................
+..........................................................
 # Indexing
 1. What is indexing?
 2. Clustered vs Non-clustered index
@@ -198,7 +222,8 @@ Indexes are not "free"—they consume disk space and, crucially, slow down data 
 # Transactions
 1. ACID properties
 2. COMMIT, ROLLBACK
-
+..........................................................
+..........................................................
 
 # Real-World Data Analyst Questions
 # Scenario-Based
@@ -239,97 +264,9 @@ FROM sales
 SELECT date,
 Avg(sales) OVER (ORDER BY date) AS running_total
 FROM sales;
+..........................................................
 
-
-# 2026 - 03 - 21 
-# Data Science Use Cases (SQL + Analytics)
-1. Feature Engineering using SQL
-- Creating lag features
-- Rolling averages
-
-SELECT date,
-AVG(sales) OVER (ORDER BY date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) as moving_avg
-FROM sales;
-
-2. Time Series SQL Questions
-
-# Learn:-
-1. Time series queries
-2. Feature engineering
-3. Lag functions
-
-SELECT date,
-LAG(sales) OVER (ORDER BY date) AS prev_day
-FROM sales;
-
-- Month-over-Month growth
-- Year-over-Year growth
-
-SELECT 
-month,
-revenue,
-LAG(revenue) OVER (ORDER BY month) as prev_month,
-(revenue - LAG(revenue) OVER (ORDER BY month)) / LAG(revenue) OVER (ORDER BY month) as growth
-FROM revenue_table;
-
--- Tasks:- 
-Month-over-month growth
-Moving averages
-Trend analysis
-
-# Learn:- 
-1. Indexing basics
-2. Query optimization
-3. Explain plan
-
-# 1. What is Query Optimization?
-Query optimization = making SQL queries run faster & use fewer resources
-
-Example:
--- Slow
-SELECT * FROM employees;
--- Optimized
-SELECT id, name FROM employees;
-
-# 👉 Why faster?
-Because it avoids unnecessary columns → less memory + faster execution
-
-# 2. Step-by-Step Optimization Process
-🟢 STEP 1: Avoid SELECT *
-❌ Bad:
-SELECT * FROM sales;
-✅ Good:- ( Specific Columns ) 
-SELECT order_id, revenue FROM sales;
-
-👉 Only fetch what you need
-🟢 STEP 2: Use WHERE Early (Filter Early)
-❌ Bad:
-SELECT * FROM sales;
-
-✅ Good:
-SELECT * FROM sales WHERE revenue > 1000;
-👉 Reduces rows processed
-
-
-## 2026 - 03 - 21 
-# 🎯 Tricky Interview Questions
-1. Difference between WHERE and HAVING
-2. DELETE vs TRUNCATE vs DROP
-3. UNION vs UNION ALL
-4. EXISTS vs IN
-5. NULL handling in SQL
-6. Why joins are faster than subqueries (or vice versa)
-
-# 🔥FAANG-Level Questions
-- Design a database schema for Netflix
-- Optimize a slow query
-- Write SQL for recommendation systems
-- Query large datasets efficiently
-
-#💡Bonus: Must-Practice Platforms
-1. LeetCode (SQL section)
-2. HackerRank
-3. Code Chef
-4. StrataScratch
-5. Mode Analytics SQL Tutorial
+..........................................................
+                 Best Of Luck:- 
+..........................................................
 
