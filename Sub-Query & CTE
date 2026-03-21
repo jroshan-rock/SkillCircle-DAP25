@@ -1,0 +1,16 @@
+# Default Date/Time
+
+A subquery in MySQL is a SELECT statement nested within another SQL statement. 
+It is also known as an inner query or nested query, 
+while the statement containing it is referred to as the outer query or main query. 
+Subqueries are always enclosed in parentheses.
+
+# Right ot left 
+-- First will be executed your Inner Query or Sub-Query then Outer Query or main Query.
+
+Write a solution to report the movies  
+with an odd- numbered ID and a description that is not "boring" ?
+
+-- Find the Second Highest Medical Charges ? 
+-- Find the Third Highest Medical Charges ? 
+
