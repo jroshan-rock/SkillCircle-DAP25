@@ -1,0 +1,139 @@
+#2026 - 03 - 21 
+
+# 🚀 What is Indexing?
+
+# 👉 Index = Data structure that makes data retrieval faster
+Think of it like:
+
+1. 📖 Book without index → read every page
+2. 📖 Book with index → jump directly to page
+
+# 👉 Same in MySQL:
+
+1. Without index → Full Table Scan
+2. With index → Direct lookup (fast)
+
+# ⚡Why Indexing is Important?
+
+-- 1. Without Index:
+SELECT * FROM employees WHERE salary = 50000;
+👉 MySQL checks every row 😴 (slow)
+
+-- 2. With Index:- 
+CREATE INDEX idx_salary ON employees(salary);
+👉 Now MySQL directly finds rows ⚡ (fast)
+
+
+# 🟢 How Index Works (Concept)
+
+-- 👉 Internally MySQL uses:
+-- B-Tree (Balanced Tree)
+-- Example:
+
+Salary Index:
+  30000
+     \
+     50000
+        \
+        70000
+
+- 👉 Instead of scanning → it navigates tree
+
+
+..........................................................
+..........................................................
+
+# 🟡Types of Indexes (Must Know)
+
+1. Single Column Index
+CREATE INDEX idx_name ON employees(name);
+👉 Used when filtering on one column
+..........................................................
+..........................................................
+
+2. Composite Index (🔥 Important)
+CREATE INDEX idx_dept_salary ON employees(department, salary);
+👉 Works best for:
+WHERE department = 'IT' AND salary > 50000
+..........................................................
+..........................................................
+
+
+3. Unique Index
+CREATE UNIQUE INDEX idx_email ON users(email);
+👉 Ensures no duplicate values
+
+..........................................................
+..........................................................
+
+4. Primary Key Index
+PRIMARY KEY (id)
+👉 Automatically indexed
+..........................................................
+..........................................................
+
+# 🔵 5. When to Use Index?
+👉 Use index on columns used in:
+
+- ✔ WHERE
+- ✔ JOIN
+- ✔ ORDER BY
+- ✔ GROUP BY
+
+Example:
+SELECT * FROM orders
+WHERE customer_id = 10;
+👉 Add index on customer_id
+
+..........................................................
+..........................................................
+
+# 🔴 6. When NOT to Use Index? (Very Important)
+
+- ❌ Small tables (no benefit)
+- ❌ Columns with many duplicates (low cardinality)
+- ❌ Frequently updated columns
+
+# 👉 Why?
+   Index slows down INSERT/UPDATE
+
+..........................................................
+..........................................................
+
+# ⚡ 7. Composite Index Rule (Golden Rule)
+👉 Leftmost Prefix Rule
+Index:- 
+(department, salary)
+
+Works:- 
+WHERE department = 'IT'
+WHERE department = 'IT' AND salary > 50000
+
+❌ Doesn't Work:
+WHERE salary > 50000
+👉 Because department is first column
+
+..........................................................
+..........................................................
+
+# 🔥 8. Check Index Usage (EXPLAIN)
+
+EXPLAIN SELECT * FROM employees WHERE salary = 50000;
+Look for:
+type = index or range → GOOD
+type = ALL → full scan (bad)
+
+..........................................................
+..........................................................
+
+# 🧠 9. Real Interview Example
+Problem:
+Find orders by customer
+
+❌ Without Index:
+SELECT * FROM orders WHERE customer_id = 100;
+👉 Slow on large data
+
+✅ With Index:
+CREATE INDEX idx_customer ON orders(customer_id);
+👉 Much faster ⚡
