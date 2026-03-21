@@ -20,7 +20,7 @@ Leetcode :- https://leetcode.com/studyplan/top-sql-50/<br>
   <img src="assets/demo.gif" width="800"/>
 </p>
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=Yi-VNTTGV4g">
+  <a href="https://youtube.com/playlist?list=PLG-Gu4JB8iA5Jy0FyrKzAI_M2SUdPQDHi&si=wt5U6LZVydtbkhv4">
     <img src="https://img.shields.io/badge/Watch-Full%20Video-red?style=for-the-badge&logo=youtube"/>
   </a>
 </p>
@@ -30,20 +30,20 @@ Leetcode :- https://leetcode.com/studyplan/top-sql-50/<br>
   <img src="assets/demo.gif" width="800"/>
 </p>
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=slymkQZZxMQ">    
+  <a href="https://youtube.com/playlist?list=PLG-Gu4JB8iA6JHKPiBkaQtDeTEyqMbiZU">    
     <img src="https://img.shields.io/badge/Watch-Full%20Video-red?style=for-the-badge&logo=youtube"/>
   </a>
 </p>
 
-## 👉 **Python Full Course 2026 | Data Analysis & Data Science**
+<!-- ## 👉 **Python Full Course 2026 | Data Analysis & Data Science**
 <p align="center">
   <img src="assets/demo.gif" width="800"/>
 </p>
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=IzvQO7ZIK84">    
+  <a href="https://youtube.com/playlist?list=PLG-Gu4JB8iA4CSuGZhJc2z8OY0oG5PQC0">    
     <img src="https://img.shields.io/badge/Watch-Full%20Video-red?style=for-the-badge&logo=youtube"/>
   </a>
-</p>
+</p> -->
 
 ## Key Functions of SQL:
   1. Data Querying: Retrieve data from a database using the SELECT statement.
