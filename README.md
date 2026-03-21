@@ -7,16 +7,15 @@ sqlzoo  :- [https://sqlzoo.net/wiki/SQL_Tutorial ] <br>
 Geeksforgeeks :- [ https://www.geeksforgeeks.org/sql/sql-exercises/] <br> 
 Leetcode :- https://leetcode.com/studyplan/top-sql-50/<br> 
 
-## 🎥 Live Demo
+<!-- ## 🎥 Live Demo
 
 <p align="center">
   <img src="assets/demo.gif" alt="Project Demo" width="800"/>
 </p>
 
-👉 **Full Flaylist:** [https://www.youtube.com/watch?v=Yi-VNTTGV4g](https://www.youtube.com/watch?v=Yi-VNTTGV4g&list=PLG-Gu4JB8iA5Jy0FyrKzAI_M2SUdPQDHi)
+👉 **Full Flaylist:** [https://www.youtube.com/watch?v=Yi-VNTTGV4g](https://www.youtube.com/watch?v=Yi-VNTTGV4g&list=PLG-Gu4JB8iA5Jy0FyrKzAI_M2SUdPQDHi) -->
 
-## 🚀 Project Demo
-
+## 👉 **Full Flaylist:**
 <p align="center">
   <img src="assets/demo.gif" width="800"/>
 </p>
