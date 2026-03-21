@@ -1,0 +1,82 @@
+# Default Date/Time 
+-- NOW(),CURDATE(),CURRENT_DATE() , CURRENT_TIME() , CURTIME(), CURRENT_TIMESTAMP() 
+
+select now(), curdate(),current_date(),current_time(),curtime(),current_timestamp();
+
+-- Year(), Month(), Days()
+select * ,year(`Requesting date`),month(`Requesting date`),day(`Requesting date`) from healthcare;
+
+select * from train where year(`Order Date`) = '2017';
+select dayofyear(now());
+
+# 🔀 Formatting and Conversion
+# --Function	Description	Example	Output
+DATE_FORMAT(date, format)	Format a date string	SELECT DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i');	2025-04-24 15:30 <br>
+STR_TO_DATE(str, format)	Convert string to date	SELECT STR_TO_DATE('24-04-2025','%d-%m-%Y');	2025-04-24 <br>
+TIME_FORMAT(time, format)	Format time	SELECT TIME_FORMAT('15:30:45', '%H:%i');	15:30 <br>
+EXTRACT(unit FROM date)	Extract date part	SELECT EXTRACT(YEAR FROM '2025-04-24');	2025  <br>
+
+%M -> Month Name 
+%I -> Hour Number ( 12 hours time ) 
+%p -> Am/Pm ( 12  hours ) 
+%a -> Short Week Name  
+%W -> Full Week Name 
+
+%Y -> Full Year Number 
+%y -> Short Year Number 
+%m -> Month  Number 
+%d -> Days Number 
+%H -> ( 24 hours ) 
+%h -> ( 12 hours ) 
+%i -> Minutes 
+%s -> Second 
+
+select now(),date_format(now(),"%H:%i:%s") , date_format(now(),"%H:%I:%S")
+
+-- ( Date_add ,Adddate ), ( Date_sub, Subdate ) 
+
+-- for 1 day 
+select * , date_add(new_requesting_date,interval 1 day)  from healthcare 
+where date_add(new_requesting_date,interval 1 day)  = new_appointment_date;
+
+select * , date_add(new_requesting_date,interval 1 day)  from healthcare 
+where date_format(date_add(new_requesting_date,interval 1 day),"%Y-%m-%d")  = date_format(new_appointment_date,"%Y-%m-%d");
+
+
+-- for 2 day 
+select * , date_add(`Requesting date`,interval 2 day)  from healthcare 
+where date_format(date_add(new_requesting_date,interval 2 day),"%Y-%m-%d")  = date_format(new_appointment_date,"%Y-%m-%d");
+
+-- for 1 months 
+select * , date_add(new_requesting_date,interval 1 month)  from healthcare 
+where date_format(date_add(new_requesting_date,interval 1 month),"%Y-%m-%d")  = date_format(new_appointment_date,"%Y-%m-%d");
+
+select * , date_add(`Requesting date`,interval 1 month)  from healthcare 
+where month(date_add(`Requesting date`,interval 1 month))  = month(`Appointment date`);
+
+# TimeDiff / DateDiff 
+
+-- Difference between 
+select datediff(now(),'2025-11-15');
+select * from train where datediff(new_ship_date,new_order_date) = 2;
+
+select timediff(now(),'2025-04-24'); -- null 
+select timediff(current_time(),'11:38:00 am'), timediff(curtime(),'4:32:00 pm');
+
+
+select `Order Date`,`Ship Date`,timediff(date_format(`Ship Date`,"%h-%i-%s"),
+date_format(`Order Date`,"%h-%i-%s") )as diff 
+from train ;
+
+# Exact difference in Year , month,day,hour,minute,second, seconds, minutes, or hours
+
+Select 
+TIMESTAMPDIFF(year, `Requesting date`, `Appointment date`) AS years,
+TIMESTAMPDIFF(month, `Requesting date`, `Appointment date`) AS months,
+TIMESTAMPDIFF(DAY, `Requesting date`, `Appointment date`) AS days,
+TIMESTAMPDIFF(HOUR, `Requesting date`, `Appointment date`) AS hours,
+TIMESTAMPDIFF(MINUTE, `Requesting date`, `Appointment date`) AS minutes,
+TIMESTAMPDIFF(SECOND, `Requesting date`, `Appointment date`) AS seconds
+from healthcare;
+
+
