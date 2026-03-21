@@ -1,0 +1,80 @@
+# Default Date/Time
+
+use my_db;
+
+select * from train;
+select * from healthcare;
+
+-- Lower or upper or length, char_length
+select `Customer Name`,upper(`Customer Name`), lower(`Customer Name`),
+length(`Customer Name`),char_length(`Customer Name`)
+from train;
+
+-- Left , Right and concat  
+ select `Customer Name`, left(`Customer Name`,5),right(`Customer Name`,5), 
+ concat("abc"," ",`Customer Name`),
+ concat("abc"," ",`Customer Name`," ","Pqr"),
+ concat_ws(" ","abc",`Customer Name`,"Pqr")
+ from train;
+ 
+ select * from train;
+ 
+ -- first letter is capital and rest of these small for Country
+select `Customer Name`, upper(left(`Customer Name`,1)) , lower(right(`Customer Name`,length(`Customer Name`)-1)),
+concat_ws("" , upper(left(`Customer Name`,1)) , lower(right(`Customer Name`,length(`Customer Name`)-1)) ) 
+from train;
+
+-- combined first name and last name 
+select * , concat_ws(" " ,`first name`,`last name`) from healthcare;
+
+
+select * from healthcare;
+
+select `First Name`, `Last Name`,`Full Name` , concat(`First Name`," ",`Last Name`) as full_name
+from healthcare;
+
+
+
+-- reverse , replace 
+select * from train;
+
+select `Ship Date`,replace(`Ship Date`,'-','@'), Segment, reverse(Segment)
+from train;
+
+
+select "muskan" ;
+select 2 * 2 , 2 + 2 , 2 -2 , 2 /2 , 2 % 5 ;
+select year(now());
+
+
+-- trim ,ltrim, rtirm
+select "   dkfdj  " , trim("   dkfdj  "), rtrim("   dkfdj  "), ltrim("   dkfdj  ");
+
+
+-- Substring extraction & position 
+-- substr( string, pos,len) , substring(str,pos,len)
+select `Customer Name`, substr(`Customer Name`,2,20),
+substring(`Customer Name`,2,5)
+from train;
+
+select * from healthcare;
+select `First Name`, concat(upper(substr(`First Name`,1,1))," " , lower(substr(`First Name`,2,length(`First Name`))) ) 
+from healthcare;
+
+
+-- Searching 
+-- position, locate,instr
+select `Customer Name`, position(" " in `Customer Name`), locate(" " , `Customer Name`) ,
+instr(`Customer Name`," ") 
+from train;
+
+select * from train;
+
+select `Product Name`, position("-" in `Product Name`), locate("-" , `Product Name`) ,
+instr(`Product Name`,"-") from train where `Product Name` like "%-%";
+
+select `Product Name`, position("/" in `Product Name`), locate("/" , `Product Name`) ,
+instr(`Product Name`,"/") from train where `Product Name` like "%/%";
+
+select `Product Name`, position("_" in `Product Name`), locate("_" , `Product Name`) ,
+instr(`Product Name`,"_") from train where `Product Name` like "%_%";
