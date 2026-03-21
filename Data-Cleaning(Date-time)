@@ -102,4 +102,11 @@ TIMESTAMPDIFF(MINUTE, `Requesting date`, `Appointment date`) AS minutes,
 TIMESTAMPDIFF(SECOND, `Requesting date`, `Appointment date`) AS seconds
 from healthcare;
 
+-- Timestamp_add 
+
+SELECT NOW() + INTERVAL 1 DAY;
+SELECT DATE_ADD(NOW(), INTERVAL 1 DAY);
+SELECT TIMESTAMPADD(DAY, 1, NOW());
+
+-- What Inteval you want to add , number of interval , columns/ data ) 
 
