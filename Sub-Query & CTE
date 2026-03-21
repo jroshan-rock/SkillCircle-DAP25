@@ -14,3 +14,57 @@ with an odd- numbered ID and a description that is not "boring" ?
 -- Find the Second Highest Medical Charges ? 
 -- Find the Third Highest Medical Charges ? 
 
+# Common Table Expression ( CTE ) 
+-- A Common Table Expression (CTE) in SQL is a named, temporary result set derived from a simple query, defined using the WITH clause. It exists only within the scope of a single SQL statement (e.g., SELECT, INSERT, UPDATE, or DELETE) and is not stored permanently in the database.
+
+select * from Customer;
+
+-- fetch all orders for each customer who's salary is more than 35000
+select * from orders where c_id in(
+select id from customer where salary > 35000
+);
+
+-- Common table expression 
+
+WITH cte_name AS (
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition
+)
+SELECT *
+FROM cte_name;
+
+
+with CTE as ( 
+select id from customer where salary > 35000
+)
+
+select * from orders where c_id in(
+select id from CTE
+);
+
+-- Fetch customers records who's salary is more than tha average salary 
+select avg(salary) from customer;
+select * from customer where salary > (
+select avg(salary) from customer );
+
+-- Fetch all customer details which are stored as duplicate.
+select name, email, salary, phone 
+from customer where id in( 
+select c_id  
+from orders group by c_id having count(*) > 1
+);
+
+-- Duplicate records
+select c_id , count(c_id) 
+from orders group by c_id having count(*) > 1;
+
+-- Using Common table expression ....
+with duplicate_id as ( 
+select c_id  , count(c_id) , count(*)
+from orders group by c_id having count(*) > 1
+)
+-- having count(*) / count(specific columns) >1 indicated your duplicate records.
+
+select name, email, salary, phone 
+from customer where id in ( select * from duplicate_id );
