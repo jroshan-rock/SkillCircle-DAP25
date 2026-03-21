@@ -1,10 +1,21 @@
 # Default Date/Time 
 -- NOW(),CURDATE(),CURRENT_DATE() , CURRENT_TIME() , CURTIME(), CURRENT_TIMESTAMP() 
 
+CURRENT_TIMESTAMP is the SQL standard function and can be used across various database systems. In some systems, it does not require parentheses.
+NOW() is a traditional function (e.g., in PostgreSQL) and typically requires parentheses.
+
 select now(), curdate(),current_date(),current_time(),curtime(),current_timestamp();
+
 
 -- Year(), Month(), Days()
 select * ,year(`Requesting date`),month(`Requesting date`),day(`Requesting date`) from healthcare;
+
+select year(now()) , month(now()) , day(now()) , weekday(current_timestamp),
+dayofweek(current_timestamp), hour(now()), minute(now()) , second(now());
+
+# Common Differences (e.g., MySQL):
+- WEEKDAY(): Usually returns 0 for Monday through 6 for Sunday.
+- DAYOFWEEK(): Usually returns 1 for Sunday through 7 for Saturday. 
 
 select * from train where year(`Order Date`) = '2017';
 select dayofyear(now());
@@ -34,6 +45,11 @@ EXTRACT(unit FROM date)	Extract date part	SELECT EXTRACT(YEAR FROM '2025-04-24')
 select now(),date_format(now(),"%H:%i:%s") , date_format(now(),"%H:%I:%S")
 
 -- ( Date_add ,Adddate ), ( Date_sub, Subdate ) 
+
+select date_add(now(),interval 1 day) , adddate(now(),interval 1 month),
+date_add(now(),interval 1 year) , date_sub(now(), interval 5 minute) , 
+subdate(now(),interval 12 hour) , subdate(now(),interval 50 second);
+
 
 -- for 1 day 
 select * , date_add(new_requesting_date,interval 1 day)  from healthcare 
@@ -69,6 +85,13 @@ date_format(`Order Date`,"%h-%i-%s") )as diff
 from train ;
 
 # Exact difference in Year , month,day,hour,minute,second, seconds, minutes, or hours
+
+select datediff(now(),'2004-01-20');
+select timestampdiff(year,'2004-01-20',now());
+select timestampdiff(month, '2004-01-20',now());
+select timestampdiff(day, '2004-01-20',now());
+select timestampdiff(hour, '2004-01-20',now());
+select timestampdiff(second, '2004-01-20',now());
 
 Select 
 TIMESTAMPDIFF(year, `Requesting date`, `Appointment date`) AS years,
