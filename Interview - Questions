@@ -1,0 +1,109 @@
+#2026 - 03 - 21 
+
+#🔥Beginner Level (Must Know)
+
+# Basic SQL Concepts
+1. What is MySQL?
+2. Difference between SQL & MySQL
+3. What are databases, tables, rows, columns?
+4. What is a primary key?
+5. What is a foreign key?
+
+# CRUD Operations
+1. Write query to SELECT all records
+2. Difference between WHERE vs HAVING
+3. Insert, Update, Delete examples
+SELECT * FROM employees WHERE salary > 50000;
+
+# Filtering & Sorting
+1. ORDER BY vs GROUP BY
+2. LIMIT usage
+3. DISTINCT
+
+# Aggregate Functions
+1. COUNT(), SUM(), AVG(), MIN(), MAX()
+
+SELECT department, AVG(salary)
+FROM employees
+GROUP BY department;
+
+# ⚡Intermediate Level (Core for Interviews)
+
+# Joins (VERY IMPORTANT)
+1. INNER JOIN
+2. LEFT JOIN
+3. RIGHT JOIN
+4. FULL JOIN (simulate in MySQL)
+
+SELECT e.name, d.dept_name
+FROM employees e 
+INNER JOIN departments d
+ON e.dept_id = d.id;
+
+# 👉 Interview Q:
+1. Difference between INNER vs LEFT JOIN?
+2. When will LEFT JOIN return NULL?
+
+# Subqueries
+1. Scalar subquery
+2. Correlated subquery
+
+SELECT name
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+
+# CASE Statements
+
+SELECT name,
+CASE
+  WHEN salary > 50000 THEN 'High'
+  ELSE 'Low'
+END AS salary_category
+FROM employees;
+
+# Window Functions (🔥)
+1. ROW_NUMBER()
+2. RANK()
+3. DENSE_RANK()
+4. PARTITION BY
+
+SELECT name, salary,
+RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank
+FROM employees;
+
+# 👉 FAANG-level interviews
+# 🚀 Advanced Level (Data Science Focus)
+
+# CTE (Common Table Expressions)
+WITH avg_salary AS (
+  SELECT department, AVG(salary) as avg_sal
+  FROM employees
+  GROUP BY department
+)
+SELECT * FROM avg_salary;
+
+# Indexing
+1. What is indexing?
+2. Clustered vs Non-clustered index
+3. When NOT to use index?
+
+1. What is Indexing?
+Indexing is a mechanism used by databases to locate data without having to scan every row in a table 
+(a "full table scan"). Think of it like the index at the back of a textbook: 
+if you want to find information on a specific topic, you look it up in the index, 
+get the page number, and jump directly to that page, rather than reading the entire book from start to finish. 
+
+2. Clustered vs. Non-Clustered Index
+- Clustered Index: Because it stores the actual data, retrieving a row is very fast because no extra lookup is required once you find the key.
+- Non-Clustered Index: Because it is separate, the database often has to perform a two-step process: find the key in the index, then use the pointer to jump to the actual data location.
+
+
+# Normalization
+1. 1NF, 2NF, 3NF
+2. Denormalization use cases
+
+# Transactions
+1. ACID properties
+2. COMMIT, ROLLBACK
+
+
