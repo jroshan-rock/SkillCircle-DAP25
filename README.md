@@ -179,6 +179,7 @@ Joins:-
 
 <img width="1031" height="542" alt="image" src="https://github.com/user-attachments/assets/8c920e3a-5334-40b3-ade6-91ed594de08b" />
 
+--- 
 
 # Clustering vs Non-Clustring  ( Advanced Questions) 
 <img width="966" height="672" alt="image" src="https://github.com/user-attachments/assets/532a2eed-e47e-4711-b36a-336ac0fe054f" />
