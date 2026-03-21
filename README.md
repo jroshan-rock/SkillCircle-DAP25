@@ -112,6 +112,8 @@ Joins:-
 4. Self Join
   <img width="710" height="399" alt="image" src="https://github.com/user-attachments/assets/83e7014c-34be-446b-8e17-0039c2c7afde" />
 
-
 <img width="1031" height="542" alt="image" src="https://github.com/user-attachments/assets/8c920e3a-5334-40b3-ade6-91ed594de08b" />
 
+
+# Clustering vs Non-Clustring  ( Advanced Questions) 
+<img width="966" height="672" alt="image" src="https://github.com/user-attachments/assets/532a2eed-e47e-4711-b36a-336ac0fe054f" />
