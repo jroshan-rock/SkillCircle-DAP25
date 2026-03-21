@@ -1,0 +1,46 @@
+SQL window functions perform calculations across a defined set of related rows (a "window") 
+and return a single value for each original row, unlike standard aggregate functions 
+which collapse rows into a single result. This allows for calculations like running totals, 
+rankings, and moving averages while preserving the detailed data.
+
+# ey Concepts
+- OVER() Clause: This mandatory clause defines the window of rows the function operates on.
+- PARTITION BY: An optional sub-clause within OVER() that divides the rows into groups (partitions) based on a specified column(s). The window function calculations are then reset for each partition.
+- ORDER BY: Specifies the logical order of rows within each partition. This is essential for functions that rely on sequence, like ranking or offset functions.
+- Window Frame: An optional clause (e.g., ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) that further defines a subset of rows within the current partition for the calculation. 
+
+
+# Types of Window Functions
+- SQL window functions are generally divided into three types: 
+
+# Type 	Functions	Description	Use Cases
+1. Aggregate	SUM(), AVG(), MIN(), MAX(), COUNT()	Perform standard aggregations over the window while retaining individual rows.	
+- Calculating department averages alongside each employee's salary.
+
+2. Ranking	ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE(), PERCENT_RANK()	
+- Assign a rank or sequential number to each row within a partition.	Finding the top N per group (e.g., top 3 earners in each department).
+
+3. Value/Offset	LAG(), LEAD(), FIRST_VALUE(), LAST_VALUE(), NTH_VALUE()	
+- Retrieve values from preceding, following, first, or last rows in the window.	
+- Calculating the difference in revenue from the previous month.
+
+# Eg.... 
+
+- To find the running total of revenue for each product, you can use the SUM() window function with PARTITION BY and ORDER BY: 
+
+SELECT
+    product,
+    transaction_date,
+    spend,
+    SUM(spend) OVER (
+        PARTITION BY product
+        ORDER BY transaction_date
+    ) AS running_total
+FROM
+    product_spend
+ORDER BY
+    product, transaction_date;
+
+
+This query outputs each transaction's details along with an accumulating 
+running_total for that specific product, which resets when the product changes.
