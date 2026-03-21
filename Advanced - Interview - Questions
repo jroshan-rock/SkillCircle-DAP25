@@ -2,6 +2,43 @@
 
 ..........................................................
 ..........................................................
+# Indexing
+1. What is indexing?
+2. Clustered vs Non-clustered index
+3. When NOT to use index?
+
+1. What is Indexing?
+Indexing is a mechanism used by databases to locate data without having to scan every row in a table 
+(a "full table scan"). Think of it like the index at the back of a textbook: 
+if you want to find information on a specific topic, you look it up in the index, 
+get the page number, and jump directly to that page, rather than reading the entire book from start to finish. 
+
+2. Clustered vs. Non-Clustered Index
+- Clustered Index: Because it stores the actual data, retrieving a row is very fast because no extra lookup is required once you find the key.
+- Non-Clustered Index: Because it is separate, the database often has to perform a two-step process: find the key in the index, then use the pointer to jump to the actual data location.
+
+3. When NOT to Use an Index
+Indexes are not "free"—they consume disk space and, crucially, slow down data modification (INSERT, UPDATE, DELETE) because the index must also be updated every time the underlying data changes. 
+
+# Avoid indexes when:
+- Small Tables: If a table is tiny, a full table scan is often faster than the overhead of traversing an index structure.
+- Low Cardinality Columns: Columns where data repeats frequently (e.g., a "Gender" or "Active/Inactive" status column) are poor candidates because the index doesn't significantly narrow down the search.
+- High Update Frequency: If a column is updated constantly, the overhead of rebuilding/updating the index for every write will severely hurt performance.
+- Rarely Queried Columns: If a column is never used in a WHERE, JOIN, or ORDER BY clause, an index provides zero benefit while wasting storage and slowing down writes.
+
+# Normalization
+1. 1NF, 2NF, 3NF
+2. Denormalization use cases
+
+# Transactions
+1. ACID properties
+2. COMMIT, ROLLBACK
+..........................................................
+..........................................................
+
+
+..........................................................
+..........................................................
 # 2026 - 03 - 21 
 # Data Science Use Cases (SQL + Analytics)
 
