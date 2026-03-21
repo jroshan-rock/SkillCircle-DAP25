@@ -1,0 +1,228 @@
+# 2026 - 03 - 21 
+
+..........................................................
+..........................................................
+# 2026 - 03 - 21 
+# Data Science Use Cases (SQL + Analytics)
+
+1. Feature Engineering using SQL
+- Creating lag features
+- Rolling averages
+
+SELECT date,
+AVG(sales) OVER (ORDER BY date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) as moving_avg
+FROM sales;
+..........................................................
+
+2. Time Series SQL Questions
+
+# Learn:-
+1. Time series queries
+2. Feature engineering
+3. Lag functions
+
+SELECT date,
+LAG(sales) OVER (ORDER BY date) AS prev_day
+FROM sales;
+
+- Month-over-Month growth
+- Year-over-Year growth
+
+SELECT 
+month,
+revenue,
+LAG(revenue) OVER (ORDER BY month) as prev_month,
+(revenue - LAG(revenue) OVER (ORDER BY month)) / LAG(revenue) OVER (ORDER BY month) as growth
+FROM revenue_table;
+
+-- Tasks:- 
+Month-over-month growth
+Moving averages
+Trend analysis
+..........................................................
+
+..........................................................
+..........................................................
+
+# Learn:- 
+1. Indexing basics
+2. Query optimization
+3. Explain plan
+
+..........................................................
+..........................................................
+
+# 1. What is Query Optimization?
+Query optimization = making SQL queries run faster & use fewer resources
+
+Example:
+-- Slow
+SELECT * FROM employees;
+-- Optimized
+SELECT id, name FROM employees;
+
+# 👉 Why faster?
+Because it avoids unnecessary columns → less memory + faster execution
+..........................................................
+..........................................................
+
+# 2. Step-by-Step Optimization Process
+..........................................................
+🟢 STEP 1: Avoid SELECT *
+❌ Bad:
+SELECT * FROM sales;
+✅ Good:- ( Specific Columns ) 
+SELECT order_id, revenue FROM sales;
+👉 Only fetch what you need
+
+..........................................................
+🟢 STEP 2: Use WHERE Early (Filter Early)
+❌ Bad:
+SELECT * FROM sales;
+
+✅ Good:
+SELECT * FROM sales WHERE revenue > 1000;
+👉 Reduces rows processed
+
+..........................................................
+🟢 STEP 3: Use INDEXES 
+What is Index?
+👉 Like a book index → faster lookup
+
+Create Index:
+CREATE INDEX idx_salary ON employees(salary);
+
+# When to use:
+- Columns in WHERE
+- Columns in JOIN
+- Columns in ORDER BY
+
+..........................................................
+🟢 STEP 4: Avoid Functions on Indexed Columns
+
+❌ Bad:
+SELECT * FROM employees
+WHERE YEAR(join_date) = 2023;
+
+✅ Good:
+SELECT * FROM employees
+WHERE join_date BETWEEN '2023-01-01' AND '2023-12-31';
+👉 Functions break index usage
+
+..........................................................
+🟢 STEP 5: Use LIMIT
+❌ Bad:
+SELECT * FROM logs;
+✅ Good:
+SELECT * FROM logs LIMIT 100;
+👉 Avoid scanning huge tables
+
+
+..........................................................
+🟢 STEP 6: Optimize JOINs
+
+❌ Bad:
+SELECT *
+FROM orders o, customers c
+WHERE o.customer_id = c.id;
+
+✅ Good:
+SELECT o.order_id, c.name
+FROM orders o
+INNER JOIN customers c
+ON o.customer_id = c.id;
+👉 Always use proper JOIN syntax
+
+..........................................................
+🟢 STEP 7: Use EXISTS instead of IN (for large data)
+
+❌ Bad:
+SELECT * FROM orders
+WHERE customer_id IN (SELECT id FROM customers);
+
+✅ Good:
+SELECT * FROM orders o
+WHERE EXISTS (
+  SELECT 1 FROM customers c
+  WHERE c.id = o.customer_id
+);
+👉 Faster for large datasets
+
+..........................................................
+🟢 STEP 8: Use EXPLAIN (🔥 MUST KNOW)
+Check query performance:
+EXPLAIN SELECT * FROM employees WHERE salary > 50000;
+
+👉 It tells:
+- Table scan or index used
+- Rows scanned
+- Query cost
+..........................................................
+..........................................................
+
+🔥 3. Real Interview Optimization Example
+Problem:- 
+Find high-value customers
+
+❌ Slow Query:
+SELECT *
+FROM orders
+WHERE customer_id IN (
+  SELECT id FROM customers WHERE country = 'India'
+);
+
+✅ Optimized:
+SELECT o.*
+FROM orders o
+JOIN customers c
+ON o.customer_id = c.id
+WHERE c.country = 'India';
+
+# 👉 Why faster?
+- Uses JOIN instead of subquery
+- Better index usage
+
+..........................................................
+..........................................................
+🧠 4. Advanced Optimization Concepts
+📌 Index Types
+Single column index
+Composite index
+CREATE INDEX idx_multi ON employees(department, salary);
+..........................................................
+..........................................................
+
+..........................................................
+..........................................................
+## 2026 - 03 - 21 
+# 🎯 Tricky Interview Questions
+1. Difference between WHERE and HAVING
+2. DELETE vs TRUNCATE vs DROP
+3. UNION vs UNION ALL
+4. EXISTS vs IN
+5. NULL handling in SQL
+6. Why joins are faster than subqueries (or vice versa)
+..........................................................
+..........................................................
+
+# 🔥FAANG-Level Questions
+- Design a database schema for Netflix
+- Optimize a slow query
+- Write SQL for recommendation systems
+- Query large datasets efficiently
+..........................................................
+..........................................................
+
+#💡Bonus: Must-Practice Platforms
+1. LeetCode (SQL section)
+2. HackerRank
+3. Code Chef
+4. StrataScratch
+5. Mode Analytics SQL Tutorial
+..........................................................
+..........................................................
+
+
+..........................................................
+                 Best Of Luck:- 
+..........................................................
