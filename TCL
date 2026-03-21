@@ -1,0 +1,124 @@
+# 2025 - 11 - 18 
+
+use classroom;
+
+select * from emp;
+
+## 🎯 Summary Table
+| TCL Command               | Purpose                                |
+| ------------------------- | -------------------------------------- |
+| **COMMIT**                | Save changes permanently               |
+| **ROLLBACK**              | Undo changes since last commit         |
+| **SAVEPOINT**             | Create checkpoint for partial rollback |
+| **ROLLBACK TO SAVEPOINT** | Undo to a specific point               |
+| **SET TRANSACTION**       | Set transaction properties             |
+
+
+-- The primary TCL commands used in MySQL are:
+COMMIT: This command saves all changes made during the current transaction permanently to the database. Once committed, the changes cannot be undone using ROLLBACK.
+
+-- 1️ COMMIT
+-- Saves all changes permanently in the database.
+
+-- 1️ COMMIT
+-- Saves all changes permanently in the database.
+-- Eg:-1 
+begin;
+UPDATE emp 
+SET salary = salary + 200 
+WHERE emp_id = 4;
+COMMIT;
+
+-- Eg:- 2
+begin;
+UPDATE accounts 
+SET balance = balance + 500 
+WHERE account_id = 102;
+COMMIT;
+
+-- ROLLBACK: This command undoes all changes made during the current transaction since the last COMMIT or SAVEPOINT. 
+It restores the database to its state before the transaction began or to a specific savepoint.
+
+-- 2 ROLLBACK
+
+begin;
+
+-- Undo all changes since the last COMMIT.
+UPDATE emp 
+SET salary = salary + 200 -- 79400
+WHERE emp_id = 6;
+DELETE FROM emp  WHERE id = 50;
+ROLLBACK; -- by-default all transaction will be undo.
+commit;
+
+
+-- 3️ SAVEPOINT
+-- Creates a checkpoint inside a transaction, so you can roll back partially.
+
+-- SAVEPOINT: This command sets a named point within a transaction to which you can later roll back. 
+-- This allows for partial rollbacks within a larger transaction.
+
+select * from emp;
+-- Example:- 1
+BEGIN;
+savepoint t1;
+UPDATE emp SET salary = salary + 2000 WHERE emp_id = 1; -- 77000
+
+SAVEPOINT t2;
+UPDATE emp SET salary = salary + 3000 WHERE emp_id = 2; -- 63000
+
+SAVEPOINT t3;
+UPDATE emp SET salary = salary + 5000 WHERE emp_id = 4; -- 90400
+
+-- Undo only last update
+ROLLBACK TO t1;
+COMMIT;
+-- No any changed occur in the database table.
+
+-- Example:- 2 
+BEGIN;
+savepoint t1;
+UPDATE emp SET salary = salary + 2000 WHERE emp_id = 1; 
+
+SAVEPOINT t2;
+UPDATE emp SET salary = salary + 3000 WHERE emp_id = 2; 
+
+SAVEPOINT t3;
+UPDATE emp SET salary = salary + 5000 WHERE emp_id = 4; 
+
+-- undo only last update
+ROLLBACK TO t2;
+COMMIT;
+-- Only emp_id 1 is updated and other emp_id 2 and 4 will not changed permanentily in the database table. 
+
+
+-- Delete 
+ -- For Delete , Insert and Update 
+
+begin; 
+
+savepoint t1;
+delete from emp where emp_id = 5;
+
+savepoint t2;
+UPDATE emp SET salary = salary + 5000 WHERE emp_id = 3; -- 87000
+
+savepoint t3;
+Delete from emp where emp_id = 3;
+
+savepoint t4;
+delete from emp where emp_id = 7;
+
+rollback to t3;
+commit;
+
+select * from emp;
+
+insert into emp() 
+values('5', 'abcpqrlmn', 'Banking', '65000', '2019-05-30', 'vivek_patel@company.com', '4');
+
+
+
+
+
+a
