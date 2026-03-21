@@ -97,6 +97,14 @@ get the page number, and jump directly to that page, rather than reading the ent
 - Clustered Index: Because it stores the actual data, retrieving a row is very fast because no extra lookup is required once you find the key.
 - Non-Clustered Index: Because it is separate, the database often has to perform a two-step process: find the key in the index, then use the pointer to jump to the actual data location.
 
+3. When NOT to Use an Index
+Indexes are not "free"—they consume disk space and, crucially, slow down data modification (INSERT, UPDATE, DELETE) because the index must also be updated every time the underlying data changes. 
+
+# Avoid indexes when:
+- Small Tables: If a table is tiny, a full table scan is often faster than the overhead of traversing an index structure.
+- Low Cardinality Columns: Columns where data repeats frequently (e.g., a "Gender" or "Active/Inactive" status column) are poor candidates because the index doesn't significantly narrow down the search.
+- High Update Frequency: If a column is updated constantly, the overhead of rebuilding/updating the index for every write will severely hurt performance.
+- Rarely Queried Columns: If a column is never used in a WHERE, JOIN, or ORDER BY clause, an index provides zero benefit while wasting storage and slowing down writes.
 
 # Normalization
 1. 1NF, 2NF, 3NF
@@ -105,5 +113,6 @@ get the page number, and jump directly to that page, rather than reading the ent
 # Transactions
 1. ACID properties
 2. COMMIT, ROLLBACK
+
 
 
