@@ -15,13 +15,32 @@ Leetcode :- https://leetcode.com/studyplan/top-sql-50/<br>
 
 👉 **Full Flaylist:** [https://www.youtube.com/watch?v=Yi-VNTTGV4g](https://www.youtube.com/watch?v=Yi-VNTTGV4g&list=PLG-Gu4JB8iA5Jy0FyrKzAI_M2SUdPQDHi) -->
 
-## 👉 **Full Flaylist:**
+## 👉 ** SQL Full Flaylist:**
 <p align="center">
   <img src="assets/demo.gif" width="800"/>
 </p>
-
 <p align="center">
   <a href="https://www.youtube.com/watch?v=Yi-VNTTGV4g">
+    <img src="https://img.shields.io/badge/Watch-Full%20Video-red?style=for-the-badge&logo=youtube"/>
+  </a>
+</p>
+
+## 👉 ** Data Analysis & Data Science | SQL + MySQL | LeetCode Solutions full playlist**
+<p align="center">
+  <img src="assets/demo.gif" width="800"/>
+</p>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=slymkQZZxMQ">    
+    <img src="https://img.shields.io/badge/Watch-Full%20Video-red?style=for-the-badge&logo=youtube"/>
+  </a>
+</p>
+
+## 👉 **Python Full Course 2026 | Data Analysis & Data Science**
+<p align="center">
+  <img src="assets/demo.gif" width="800"/>
+</p>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=IzvQO7ZIK84">    
     <img src="https://img.shields.io/badge/Watch-Full%20Video-red?style=for-the-badge&logo=youtube"/>
   </a>
 </p>
