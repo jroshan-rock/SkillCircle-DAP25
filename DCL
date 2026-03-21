@@ -1,0 +1,45 @@
+# Default Date/Time
+
+-- DCL
+The main DCL commands in MySQL are:
+GRANT: This command is used to assign specific privileges to a user or role. These privileges can include actions like SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, and more, on specific databases, tables, or even columns.
+
+eg.. 
+GRANT SELECT, INSERT ON database_name.table_name TO 'username'@'localhost';
+
+REVOKE: This command is used to remove previously granted privileges from a user or role. It effectively takes away the access rights that were previously assigned using the GRANT command.
+eg.. 
+    REVOKE DELETE ON database_name.table_name FROM 'username'@'localhost';
+
+| Command              | Purpose                 |
+| -------------------- | ----------------------- |
+| **CREATE USER**      | Create a new MySQL user |
+| **GRANT**            | Give permissions        |
+| **REVOKE**           | Remove permissions      |
+| **FLUSH PRIVILEGES** | Reload permissions      |
+| **DROP USER**        | Delete user             |
+
+
+✅ Creating a New User in MySQL	
+
+-- Create users 
+CREATE USER 'jroshan'@'localhost' IDENTIFIED BY 'jroshan!$&98';
+
+-- If user should connect from any location:
+CREATE USER 'john'@'%' IDENTIFIED BY 'password123';
+
+🔐 Common Permission Examples
+✔ Read-only user (SELECT only)
+GRANT SELECT ON mydb.* TO 'reader'@'localhost';
+
+GRANT SELECT, INSERT, UPDATE ON mydb.* TO 'john'@'localhost';
+FLUSH PRIVILEGES;
+
+✔ Developer access (SELECT, INSERT, UPDATE, DELETE)
+GRANT SELECT, INSERT, UPDATE, DELETE ON mydb.* TO 'devuser'@'localhost';
+
+✔ Admin access (full privileges)
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+
+❌ Remove user
+DROP USER 'john'@'localhost';
