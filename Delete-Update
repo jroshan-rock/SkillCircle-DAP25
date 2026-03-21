@@ -1,0 +1,66 @@
+# Default Date/Time
+
+In MySQL, the DELETE and UPDATE statements are used to modify data within a table.
+DELETE Statement:
+The DELETE statement is used to remove one or more rows from a table. Syntax to delete specific rows.
+
+    DELETE FROM table_name
+    WHERE condition;
+
+table_name: The name of the table from which to delete rows.
+WHERE condition: An optional clause that specifies which rows to delete. If omitted, all rows in the table will be deleted.
+
+eg .. 
+    DELETE FROM employees
+    WHERE employee_id = 101;
+This query deletes the row where the employee_id is 101 from the employees table
+
+UPDATE Statement:
+The UPDATE statement is used to modify existing data in one or more columns of a table. Syntax to update specific rows.
+    UPDATE table_name
+    SET column1 = new_value1, column2 = new_value2, ...
+    WHERE condition;
+
+table_name: The name of the table to update.
+SET column1 = new_value1, ...: Specifies the columns to update and their new values. Multiple columns can be updated by separating them with commas.
+WHERE condition: An optional clause that specifies which rows to update. If omitted, all rows in the table will be updated with the new values.
+
+    UPDATE products
+    SET price = 25.99, stock = 50
+    WHERE product_id = 5;
+
+This query updates the price to 25.99 and stock to 50 for the row where product_id is 5 in the products table.
+
+use classroom;
+
+-- for single column update product set price =1000 where product_id = 5;
+
+-- for multiple column update product set product_name = 'New Product' ,Categories="bedroom",price=2999 where product_id = 2;
+
+-- for delete delete from product where product_id = 5;
+
+-- fro multiple delete from product where product_id in(10,15,18);
+
+select * from booking;
+-- select * from orders;
+select * from train;
+select * from passenger;
+
+alter table booking add column new_fare varchar(30) ;
+update booking set new_fare = fare ;
+-- updated all fare price by 400 which fare price is more than 500
+update booking set new_fare = 400 where fare >500;
+
+-- checked for fare 400
+select * from booking where new_fare = 400; 
+-- count total records for fare 400 
+select count(*) from booking where new_fare = 400;
+
+-- Delete all product records which price is more than 5000 
+drop table if exists testing;
+create table testing as ( 
+select * from booking 
+);
+
+delete from testing where fare >=500;
+select * from testing;
