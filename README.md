@@ -15,7 +15,7 @@ Leetcode :- https://leetcode.com/studyplan/top-sql-50/<br>
 
 👉 **Full Flaylist:** [https://www.youtube.com/watch?v=Yi-VNTTGV4g](https://www.youtube.com/watch?v=Yi-VNTTGV4g&list=PLG-Gu4JB8iA5Jy0FyrKzAI_M2SUdPQDHi) -->
 
-## 👉 ** SQL Full Flaylist:**
+## 👉 **SQL Full Flaylist:**
 <p align="center">
   <img src="assets/demo.gif" width="800"/>
 </p>
@@ -25,7 +25,7 @@ Leetcode :- https://leetcode.com/studyplan/top-sql-50/<br>
   </a>
 </p>
 
-## 👉 ** Data Analysis & Data Science | SQL + MySQL | LeetCode Solutions full playlist**
+## 👉 **Data Analysis & Data Science | SQL + MySQL | LeetCode Solutions full playlist**
 <p align="center">
   <img src="assets/demo.gif" width="800"/>
 </p>
