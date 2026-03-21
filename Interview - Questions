@@ -115,4 +115,74 @@ Indexes are not "free"—they consume disk space and, crucially, slow down data 
 2. COMMIT, ROLLBACK
 
 
+# Real-World Data Analyst Questions
+# Scenario-Based
+
+1. Top 3 highest salary in each department
+SELECT *
+FROM (
+  SELECT name, department, salary,
+  DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rn
+  FROM employees
+) t
+WHERE rn <= 3;
+
+2. Find duplicate records
+
+SELECT name, COUNT(*)
+FROM employees
+GROUP BY name
+HAVING COUNT(*) > 1;
+
+3. Second highest salary
+SELECT MAX(salary)
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);
+
+4. Running total
+SELECT date, 
+SUM(sales) OVER (ORDER BY date) as running_total
+FROM sales;
+
+# Data Science Use Cases (SQL + Analytics)
+
+1. Feature Engineering using SQL
+- Creating lag features
+- Rolling averages
+
+SELECT date,
+AVG(sales) OVER (ORDER BY date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) as moving_avg
+FROM sales;
+
+2. Time Series SQL Questions
+- Month-over-Month growth
+- Year-over-Year growth
+
+SELECT 
+month,
+revenue,
+LAG(revenue) OVER (ORDER BY month) as prev_month,
+(revenue - LAG(revenue) OVER (ORDER BY month)) / LAG(revenue) OVER (ORDER BY month) as growth
+FROM revenue_table;
+
+# 🎯 Tricky Interview Questions
+1. Difference between WHERE and HAVING
+2. DELETE vs TRUNCATE vs DROP
+3. UNION vs UNION ALL
+4. EXISTS vs IN
+5. NULL handling in SQL
+6. Why joins are faster than subqueries (or vice versa)
+
+# 🔥FAANG-Level Questions
+- Design a database schema for Netflix
+- Optimize a slow query
+- Write SQL for recommendation systems
+- Query large datasets efficiently
+
+#💡Bonus: Must-Practice Platforms
+1. LeetCode (SQL section)
+2. HackerRank
+3. Code Chef
+4. StrataScratch
+5. Mode Analytics SQL Tutorial
 
