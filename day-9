@@ -1,0 +1,142 @@
+#2026 - 03 - 23 
+
+  use dap25;
+
+select * from dataset ;
+select * from customer_segmentation_data;
+
+-- Windows functions / Sub-query / Common table expression 
+
+--  max , min , avg , sum , count  of medical charges for each region ? 
+select max(`medical charges`)  , min(`medical charges`), count(*) , 
+avg(`medical charges`), sum(`medical charges`) 
+from dataset 
+-- where region ='southeast';
+group by region;
+
+select * , 
+row_number() over() as r_number,
+rank() over() as rn,
+dense_rank() over() as d_rn
+from dataset;
+-- rank(), dence_rank()
+
+-- Order by medical charges desc / asc 
+
+select * , 
+row_number() over(order by `medical charges` desc) as r_number,
+rank() over(order by `medical charges` desc) as rn,
+dense_rank() over(order by `medical charges` desc) as d_rn
+from dataset;
+
+
+-- Order by age desc / asc 
+
+select * , 
+row_number() over(order by age desc) as r_number,
+rank() over(order by age desc) as rn,
+dense_rank() over(order by age desc) as d_rn
+from dataset;
+
+
+-- Order by BMI desc / asc 
+
+select * , 
+row_number() over(order by BMI desc) as r_number,
+rank() over(order by BMI desc) as rn,
+dense_rank() over(order by BMI desc) as d_rn
+from dataset;
+
+
+-- Order by Children desc / asc 
+
+select * , 
+row_number() over(order by Children ) as r_number,
+rank() over(order by Children asc) as rn,
+dense_rank() over(order by Children) as d_rn
+from dataset;
+
+
+-- Common table expression 
+with result as ( 
+select * , 
+row_number() over(order by Children ) as r_number,
+rank() over(order by Children asc) as rn,
+dense_rank() over(order by Children) as d_rn
+from dataset
+)
+select * from result;
+
+select * from ( 
+select * , 
+row_number() over(order by Children ) as r_number,
+rank() over(order by Children asc) as rn,
+dense_rank() over(order by Children) as d_rn
+from dataset
+) as t ;
+
+-- partition by  => group by smoker 
+
+with smoker_limit200 as (
+select * from dataset limit 200
+)
+select * , 
+row_number() over(partition by smoker) as r_number,
+rank() over(partition by smoker) as rn,
+dense_rank() over(partition by smoker) as d_rn
+from smoker_limit200;
+
+-- Partition by region  with medical charges is desc
+
+with smoker_limit200 as (
+select * from dataset limit 200
+)
+
+select * , 
+row_number() over(partition by region order by `medical charges` desc) as r_number,
+rank() over(partition by region order by `medical charges` desc) as rn,
+dense_rank() over( partition by region order by `medical charges` desc) as d_rn
+from smoker_limit200;
+
+-- with smoker_limit200 as (
+-- select * from dataset limit 200
+-- );
+-- drop table limit200;
+create table  limit500 as ( 
+select * from dataset limit 500
+);
+
+-- Partition by age and order by medical charges is asc 
+select * , 
+row_number() over(partition by age order by `medical charges`) as r_number,
+rank() over(partition by age order by `medical charges`) as rn,
+dense_rank() over( partition by age order by `medical charges` asc) as d_rn
+from limit500;
+
+-- partition by smoker and order by age is desc
+select * , 
+row_number() over(partition by smoker order by age ) as r_number,
+rank() over(partition by smoker order by age) as rn,
+dense_rank() over( partition by smoker order by age asc) as d_rn
+from limit500;
+
+-- select * , 
+-- row_number() over(order by Children ) as r_number,
+-- rank() over(order by Children asc) as rn,
+-- dense_rank() over(order by Children) as d_rn
+-- from dataset
+
+-- Running sum , Running Avg 
+select * from customer_segmentation_data;
+
+select * from dataset;
+
+-- Aggregation function
+-- Find the running sum and average for each region with order by age is asc 
+select * , 
+sum(`medical charges`) over(partition by region order by age) as running_sum,
+avg(`medical charges`) over(partition by region order by age) as running_avg,
+rank() over(partition by region order by age) as rn ,
+dense_rank() over(partition by region order by age) as d_rn
+from dataset;
+
