@@ -1,0 +1,557 @@
+SQL (Structured Query Language) is a standardized programming language designed for managing 
+and manipulating relational databases. It is used for tasks such as querying data, 
+updating records, inserting new data, and deleting data from databases. 
+SQL is essential for interacting with most relational database management systems (RDBMS), 
+such as MySQL, PostgreSQL, Microsoft SQL Server, and Oracle Database.
+
+# Key Features of SQL
+1. Querying Data: Retrieve specific information from one or more tables (using SELECT statements).
+2. Manipulating Data: Insert (INSERT), update (UPDATE), or delete (DELETE) records.
+3. Defining Data: Create and modify the structure of database tables and schemas (CREATE, ALTER, DROP).
+4. Data Control: Manage user access and permissions (GRANT, REVOKE).
+
+# Example SQL Query
+eg... SQL
+SELECT first_name, last_name FROM employees WHERE department = 'Sales';
+
+
+# SQL Complete Course for Data Analytics & Data Science
+
+# Module 1: SQL Fundamentals
+1. Introduction to Databases
+Concept:- 
+
+A database is an organized collection of structured data stored electronically
+Relational databases organize data into tables (rows and columns)
+SQL is the language used to interact with these databases
+
+Example:-
+
+SQL
+-- A simple Employee table structure
+| EmployeeID | Name    | Department | Salary |
+|------------|---------|------------|--------|
+| 1          | Alice   | Sales      | 50000  |
+| 2          | Bob     | IT         | 60000  |
+| 3          | Charlie | HR         | 55000  |
+
+2. SELECT Statement (Data Retrieval)
+Concept:-
+
+The SELECT statement is used to retrieve data from a database
+Basic syntax: SELECT column(s) FROM table_name
+
+Examples:-
+
+SQL
+-- Select all columns
+SELECT * FROM employees;
+
+-- Select specific columns
+SELECT name, salary FROM employees;
+
+-- Select with column alias
+SELECT name AS employee_name, salary AS monthly_pay FROM employees;
+
+3. WHERE Clause (Filtering Data)
+Concept:-
+
+Filter records based on specific conditions
+Use comparison operators: =, !=, <, >, <=, >=
+
+Examples:-
+
+SQL
+-- Find employees with salary > 55000
+SELECT name, salary FROM employees WHERE salary > 55000;
+
+-- Find employees in IT department
+SELECT * FROM employees WHERE department = 'IT';
+
+-- Find employees with names starting with 'A'
+SELECT * FROM employees WHERE name LIKE 'A%';
+
+# Module 2: Data Filtering & Logical Operators
+
+4. Logical Operators (AND, OR, NOT)
+Concept:
+
+# Combine multiple conditions in WHERE clause
+- AND: All conditions must be true
+- OR: At least one condition must be true
+- NOT: Negates a condition
+
+Examples:-
+
+SQL
+-- AND operator
+SELECT * FROM employees 
+WHERE department = 'IT' AND salary > 55000;
+
+-- OR operator
+SELECT * FROM employees 
+WHERE department = 'IT' OR department = 'HR';
+
+-- NOT operator
+SELECT * FROM employees 
+WHERE NOT department = 'Sales';
+
+5. IN and BETWEEN Operators
+Concept:-
+
+- IN: Match any value in a list
+- BETWEEN: Match values within a range
+Examples:-
+
+SQL
+-- IN operator
+SELECT * FROM employees 
+WHERE department IN ('IT', 'HR', 'Sales');
+
+-- BETWEEN operator
+SELECT * FROM employees 
+WHERE salary BETWEEN 50000 AND 60000;
+
+# Module 3: Sorting & Limiting Results
+
+6. ORDER BY (Sorting)
+Concept:-
+
+Sort results in ascending (ASC) or descending (DESC) order
+Default is ascending
+
+Examples:-
+
+SQL
+-- Sort by salary in ascending order
+SELECT name, salary FROM employees 
+ORDER BY salary ASC;
+
+-- Sort by salary in descending order
+SELECT name, salary FROM employees 
+ORDER BY salary DESC;
+
+-- Sort by multiple columns
+SELECT name, department, salary FROM employees 
+ORDER BY department ASC, salary DESC;
+
+7. LIMIT and OFFSET (Pagination)
+Concept:-
+
+- LIMIT: Restrict number of rows returned
+- OFFSET: Skip a number of rows
+
+Examples:-
+
+SQL
+-- Get top 5 highest-paid employees
+SELECT * FROM employees 
+ORDER BY salary DESC 
+LIMIT 5;
+
+-- Get records 6-10
+SELECT * FROM employees 
+LIMIT 5 OFFSET 5;
+
+# Module 4: Aggregate Functions for Data Analysis
+
+8. COUNT, SUM, AVG, MIN, MAX
+Concept:-
+
+Aggregate functions perform calculations on multiple rows
+Used for data summarization in analytics
+Examples:-
+
+SQL
+-- Count total employees
+SELECT COUNT(*) AS total_employees FROM employees;
+
+-- Sum of all salaries
+SELECT SUM(salary) AS total_payroll FROM employees;
+
+-- Average salary
+SELECT AVG(salary) AS average_salary FROM employees;
+
+-- Minimum and maximum salary
+SELECT MIN(salary) AS min_salary, MAX(salary) AS max_salary 
+FROM employees;
+
+-- Combined aggregations
+SELECT COUNT(*) AS total_emp, 
+       AVG(salary) AS avg_salary,
+       SUM(salary) AS total_salary
+FROM employees;
+
+9. GROUP BY (Grouping Data)
+Concept:-
+
+Groups rows by one or more columns
+Essential for segment analysis in data analytics
+Examples:-
+
+SQL
+-- Count employees by department
+SELECT department, COUNT(*) AS emp_count 
+FROM employees 
+GROUP BY department;
+
+-- Average salary by department
+SELECT department, AVG(salary) AS avg_salary 
+FROM employees 
+GROUP BY department;
+
+-- Department-wise salary analysis
+SELECT department, 
+       COUNT(*) AS total_emp,
+       AVG(salary) AS avg_salary,
+       MAX(salary) AS max_salary
+FROM employees 
+GROUP BY department;
+
+10. HAVING Clause (Filtering Groups)
+
+Concept:-
+
+Filter groups after GROUP BY (WHERE filters rows, HAVING filters groups)
+Used when you need to filter on aggregate values
+Examples:-
+
+SQL
+-- Departments with average salary > 55000
+SELECT department, AVG(salary) AS avg_salary 
+FROM employees 
+GROUP BY department 
+HAVING AVG(salary) > 55000;
+
+-- Departments with more than 2 employees
+SELECT department, COUNT(*) AS emp_count 
+FROM employees 
+GROUP BY department 
+HAVING COUNT(*) > 2;
+
+# Module 5: Working with Multiple Tables (JOINS)
+
+11. INNER JOIN
+Concept:-
+
+Returns only matching records from both tables
+Most common join type in analytics
+Example Setup:-
+
+SQL
+-- Employees table
+| EmployeeID | Name    | DepartmentID |
+|------------|---------|--------------|
+| 1          | Alice   | 1            |
+| 2          | Bob     | 2            |
+
+-- Departments table
+| DepartmentID | DeptName |
+|--------------|----------|
+| 1            | Sales    |
+| 2            | IT       |
+Examples:-
+
+SQL
+-- Get employee names with their departments
+SELECT e.name, d.DeptName 
+FROM employees e 
+INNER JOIN departments d 
+ON e.DepartmentID = d.DepartmentID;
+
+-- Sales performance: employees and their commissions
+SELECT e.name, s.amount 
+FROM employees e 
+INNER JOIN sales s 
+ON e.EmployeeID = s.EmployeeID;
+
+12. LEFT JOIN
+Concept:-
+
+Returns all records from left table + matching records from right table
+Useful for finding unmatched records
+Examples:-
+
+SQL
+-- Get all employees, including those without assigned departments
+SELECT e.name, d.DeptName 
+FROM employees e 
+LEFT JOIN departments d 
+ON e.DepartmentID = d.DepartmentID;
+
+-- Find employees with no sales
+SELECT e.name 
+FROM employees e 
+LEFT JOIN sales s 
+ON e.EmployeeID = s.EmployeeID 
+WHERE s.EmployeeID IS NULL;
+
+13. RIGHT JOIN & FULL OUTER JOIN
+Concept:-
+
+- RIGHT JOIN: All records from right table + matching from left
+- FULL OUTER JOIN: All records from both tables
+Examples:-
+SQL
+
+-- RIGHT JOIN
+SELECT e.name, d.DeptName 
+FROM employees e 
+RIGHT JOIN departments d 
+ON e.DepartmentID = d.DepartmentID;
+
+-- FULL OUTER JOIN
+SELECT e.name, d.DeptName 
+FROM employees e 
+FULL OUTER JOIN departments d 
+ON e.DepartmentID = d.DepartmentID;
+
+# Module 6: String & Date Functions
+
+14. String Functions
+Concept:-
+
+Manipulate and analyze text data
+Examples:-
+
+SQL
+-- Convert to uppercase/lowercase
+SELECT UPPER(name) AS upper_name, LOWER(name) AS lower_name 
+FROM employees;
+
+-- String length
+SELECT name, LENGTH(name) AS name_length 
+FROM employees;
+
+-- Extract substring
+SELECT name, SUBSTRING(name, 1, 3) AS first_3_chars 
+FROM employees;
+
+-- Trim whitespace
+SELECT TRIM(name) AS clean_name FROM employees;
+
+-- Concatenate columns
+SELECT CONCAT(name, ' - ', department) AS emp_info 
+FROM employees;
+
+15. Date Functions
+Concept:-
+
+Work with date/time data for time-series analysis
+Examples:-
+
+SQL
+-- Get current date
+SELECT CURDATE() AS today;
+
+-- Extract year, month, day
+SELECT 
+  YEAR(hire_date) AS hire_year,
+  MONTH(hire_date) AS hire_month,
+  DAY(hire_date) AS hire_day
+FROM employees;
+
+-- Add/subtract days
+SELECT 
+  name, 
+  hire_date,
+  DATE_ADD(hire_date, INTERVAL 1 YEAR) AS anniversary_date
+FROM employees;
+
+-- Calculate days employed
+SELECT 
+  name,
+  DATEDIFF(CURDATE(), hire_date) AS days_employed
+FROM employees;
+
+# Module 7: Advanced Analytics
+
+16. DISTINCT (Remove Duplicates)
+Concept:-
+
+Return unique values only
+Examples:
+
+SQL
+-- Get unique departments
+SELECT DISTINCT department FROM employees;
+
+-- Count unique departments
+SELECT COUNT(DISTINCT department) AS unique_depts 
+FROM employees;
+
+17. CASE Statement (Conditional Logic)
+Concept:-
+
+Create conditional columns for segmentation and categorization
+Critical for data science feature engineering
+Examples:-
+
+SQL
+-- Salary categorization
+SELECT 
+  name,
+  salary,
+  CASE 
+    WHEN salary > 60000 THEN 'High'
+    WHEN salary > 50000 THEN 'Medium'
+    ELSE 'Low'
+  END AS salary_category
+FROM employees;
+
+-- Performance scoring
+SELECT 
+  name,
+  sales_amount,
+  CASE 
+    WHEN sales_amount > 100000 THEN 'Excellent'
+    WHEN sales_amount > 50000 THEN 'Good'
+    WHEN sales_amount > 20000 THEN 'Average'
+    ELSE 'Needs Improvement'
+  END AS performance
+FROM sales_data;
+
+18. Subqueries
+Concept:-
+
+Query within a query for complex analysis
+Examples:-
+
+SQL
+-- Find employees earning more than average
+SELECT name, salary 
+FROM employees 
+WHERE salary > (SELECT AVG(salary) FROM employees);
+
+-- Get highest-paid employee per department
+SELECT department, name, salary 
+FROM employees e1
+WHERE salary = (
+  SELECT MAX(salary) 
+  FROM employees e2 
+  WHERE e1.department = e2.department
+);
+
+-- Subquery in FROM clause
+SELECT avg_salary, COUNT(*) AS emp_count
+FROM (
+  SELECT department, AVG(salary) AS avg_salary
+  FROM employees
+  GROUP BY department
+) AS dept_stats
+WHERE avg_salary > 55000;
+
+19. Window Functions (Advanced)
+Concept:-
+
+Perform calculations across rows without collapsing them
+Essential for time-series and ranking analysis
+Examples:-
+
+SQL
+-- Rank employees by salary within department
+SELECT 
+  name,
+  department,
+  salary,
+  RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rank
+FROM employees;
+
+-- Running total of sales
+SELECT 
+  order_date,
+  amount,
+  SUM(amount) OVER (ORDER BY order_date) AS running_total
+FROM sales;
+
+-- Row number
+SELECT 
+  name,
+  ROW_NUMBER() OVER (ORDER BY salary DESC) AS row_num
+FROM employees;
+
+# Module 8: Data Quality & Handling NULL Values
+
+20. NULL Handling
+Concept:-
+
+NULL represents missing or unknown values
+Different from zero or empty string
+Examples:-
+SQL
+-- Check for NULL values
+SELECT * FROM employees WHERE email IS NULL;
+
+-- Exclude NULL values
+SELECT * FROM employees WHERE email IS NOT NULL;
+
+-- Replace NULL with default value
+SELECT 
+  name,
+  COALESCE(phone, 'Not Available') AS contact_phone
+FROM employees;
+
+-- NULL in calculations
+SELECT 
+  name,
+  salary,
+  commission,
+  salary + COALESCE(commission, 0) AS total_income
+FROM employees;
+
+# Module 9: Data Analytics Project Example
+Complete E-Commerce Analytics Query
+SQL
+-- Analyze customer purchasing patterns
+SELECT 
+  c.customer_id,
+  c.customer_name,
+  COUNT(o.order_id) AS total_orders,
+  SUM(o.order_amount) AS total_spent,
+  AVG(o.order_amount) AS avg_order_value,
+  MAX(o.order_date) AS last_purchase_date,
+  CASE 
+    WHEN SUM(o.order_amount) > 5000 THEN 'VIP'
+    WHEN SUM(o.order_amount) > 2000 THEN 'Premium'
+    ELSE 'Regular'
+  END AS customer_segment
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+GROUP BY c.customer_id, c.customer_name
+HAVING COUNT(o.order_id) > 0
+ORDER BY total_spent DESC
+LIMIT 20;
+
+# Module 10: Best Practices for Data Analytics
+
+1. Always validate data: Check for NULLs, duplicates, data types
+2. Use aliases: Make queries readable
+3. Index columns: Improve query performance
+4. Comment complex logic: Help others understand your analysis
+5. Test with LIMIT: Before running on large datasets
+6. Use CTEs: For complex multi-step analysis
+
+Example with CTE:
+
+SQL
+-- Common Table Expression (CTE)
+WITH monthly_sales AS (
+  SELECT 
+    DATE_TRUNC(order_date, MONTH) AS month,
+    SUM(amount) AS total_sales
+  FROM orders
+  GROUP BY DATE_TRUNC(order_date, MONTH)
+)
+SELECT 
+  month,
+  total_sales,
+  LAG(total_sales) OVER (ORDER BY month) AS prev_month_sales
+FROM monthly_sales;
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+########################  Have a Good Journey  ############################
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
